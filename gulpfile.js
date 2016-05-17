@@ -21,7 +21,7 @@ gulp.task('css', function() {
         .pipe(autoprefixer())
         .pipe(cssmin())
         .pipe(concat('styles.css'))
-        .pipe(gulp.dest('./css'));
+        .pipe(gulp.dest('./assets'));
 });
 
 gulp.task('ts', function() {
@@ -38,7 +38,7 @@ gulp.task('js', function() {
         .pipe(uglify())    
         .pipe(concat('scripts.js'))
         .pipe(sourcemaps.write())
-        .pipe(gulp.dest('./scripts/js'));
+        .pipe(gulp.dest('./assets'));
 });
 
 gulp.task('default', ['less', 'css', 'ts', 'js'], function() {
