@@ -4,6 +4,8 @@
   left: 50%;
   cursor: pointer;
   transform: translate3d(-50%, -50%, 0);
-  border: 30px solid #fff;
-  background-color: purple;
+  background-image: url('../assets/face.png');
+  background-position: center center;
+  background-repeat: no-repeat;
+  border: 30px solid purple;
 }

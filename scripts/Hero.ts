@@ -1,8 +1,8 @@
 /// <reference path="lib/definitions-custom.ts"/>
 /// <reference path="Helpers.ts"/>
 
-const HERO_WIDTH: number = 100;
-const HERO_HEIGHT: number = 130;
+const HERO_WIDTH: number = 161;
+const HERO_HEIGHT: number = 209;
 const BASESPEED: number = 0.3; 
 
 class Hero  {

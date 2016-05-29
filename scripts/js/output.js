@@ -40,8 +40,8 @@ var Direction;
 })(Direction || (Direction = {}));
 /// <reference path="lib/definitions-custom.ts"/>
 /// <reference path="Helpers.ts"/>
-var HERO_WIDTH = 100;
-var HERO_HEIGHT = 130;
+var HERO_WIDTH = 161;
+var HERO_HEIGHT = 209;
 var BASESPEED = 0.3;
 var Hero = (function () {
     function Hero(container) {
