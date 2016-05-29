@@ -22,3 +22,10 @@ interface IPost {
     Title?: string;
     Date?: number;
 }
+
+interface ITumblrPost {
+    Date: string;
+    Type: string;
+    Text?: string;
+    Title?: string;
+}
