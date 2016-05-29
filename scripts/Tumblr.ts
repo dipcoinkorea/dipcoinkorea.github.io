@@ -1,4 +1,4 @@
-const TUMBLR_URL: string = "http://rickymarou.tumblr.com/api/read/json";
+const TUMBLR_URL: string = document.location.protocol + "://rickymarou.tumblr.com/api/read/json";
 //const TUMBLR_URL: string = "http://api.tumblr.com/v2/blog/rickymarou.tumblr.com/posts";
 const POST_PER_PAGE: number = 20;
 
