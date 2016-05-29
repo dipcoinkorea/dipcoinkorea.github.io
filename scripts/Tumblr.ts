@@ -1,5 +1,7 @@
 //const TUMBLR_URL: string = document.location.protocol + "//rickymarou.tumblr.com/api/read/json";
-const TUMBLR_URL: string = document.location.protocol + "//api.tumblr.com/v2/blog/rickymarou.tumblr.com/posts";
+const TUMBLR_ID = "rickymarou";
+const TUMBLR_API_KEY = "osyd8e6IT3O9iaWaflEbzjzaqou01t0fd6YoM8IhgXmuOP8stx";
+const TUMBLR_REQ_URL: string = document.location.protocol + "//api.tumblr.com/v2/blog/" + TUMBLR_ID + ".tumblr.com/posts?api_key=" + TUMBLR_API_KEY;
 const POST_PER_PAGE: number = 20;
 
 module Tumblr {
@@ -22,7 +24,6 @@ module Tumblr {
             console.log("error");
         }
         
-        console.log(_Request.responseText);
         var response = JSON.parse(_Request.responseText);
         console.log(response);
     }
@@ -33,7 +34,7 @@ module Tumblr {
             
         _Request = new XMLHttpRequest();
         _Request.onreadystatechange = _GetPostsReadyStateChange;
-        _Request.open("GET", TUMBLR_URL + "?start=" + _CurIndex + "&num=" + POST_PER_PAGE, true);
+        _Request.open("GET", TUMBLR_REQ_URL + "?start=" + _CurIndex + "&num=" + POST_PER_PAGE, true);
         _Request.setRequestHeader('Accept', 'application/json');
         _Request.setRequestHeader("Content-type", "application/json");
         _Request.send();

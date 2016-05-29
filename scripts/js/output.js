@@ -166,7 +166,9 @@ var Playground;
     }
 })(Playground || (Playground = {}));
 //const TUMBLR_URL: string = document.location.protocol + "//rickymarou.tumblr.com/api/read/json";
-var TUMBLR_URL = document.location.protocol + "//api.tumblr.com/v2/blog/rickymarou.tumblr.com/posts";
+var TUMBLR_ID = "rickymarou";
+var TUMBLR_API_KEY = "osyd8e6IT3O9iaWaflEbzjzaqou01t0fd6YoM8IhgXmuOP8stx";
+var TUMBLR_REQ_URL = document.location.protocol + "//api.tumblr.com/v2/blog/" + TUMBLR_ID + ".tumblr.com/posts?api_key=" + TUMBLR_API_KEY;
 var POST_PER_PAGE = 20;
 var Tumblr;
 (function (Tumblr) {
@@ -181,7 +183,6 @@ var Tumblr;
         if (_Request.status != 200) {
             console.log("error");
         }
-        console.log(_Request.responseText);
         var response = JSON.parse(_Request.responseText);
         console.log(response);
     };
@@ -190,7 +191,7 @@ var Tumblr;
             _Request.abort();
         _Request = new XMLHttpRequest();
         _Request.onreadystatechange = _GetPostsReadyStateChange;
-        _Request.open("GET", TUMBLR_URL + "?start=" + _CurIndex + "&num=" + POST_PER_PAGE, true);
+        _Request.open("GET", TUMBLR_REQ_URL + "?start=" + _CurIndex + "&num=" + POST_PER_PAGE, true);
         _Request.setRequestHeader('Accept', 'application/json');
         _Request.setRequestHeader("Content-type", "application/json");
         _Request.send();
