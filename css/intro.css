@@ -1,0 +1,30 @@
+.intro {
+  background-color: purple;
+}
+.playground {
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  position: absolute;
+  overflow: hidden;
+}
+.intro-title {
+  font-family: 'bebasregular';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 200px;
+  text-align: center;
+  height: 64px;
+  line-height: 64px;
+  margin: -32px -100px;
+  background-color: #000;
+  color: #fff;
+  font-size: 40px;
+  letter-spacing: 4px;
+}
+.intro-title-link {
+  color: #fff;
+  text-decoration: none;
+}

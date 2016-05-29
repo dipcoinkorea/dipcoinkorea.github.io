@@ -16,3 +16,9 @@ interface IRectangle {
     Bottom: number;
     Left: number;
 }
+
+interface IPost {
+    HTMLContent: string;
+    Title?: string;
+    Date?: number;
+}
