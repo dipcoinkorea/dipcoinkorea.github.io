@@ -181,6 +181,7 @@ var Tumblr;
         if (_Request.status != 200) {
             console.log("error");
         }
+        console.log(_Request.responseText);
         var response = JSON.parse(_Request.responseText);
         console.log(response);
     };

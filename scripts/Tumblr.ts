@@ -22,6 +22,7 @@ module Tumblr {
             console.log("error");
         }
         
+        console.log(_Request.responseText);
         var response = JSON.parse(_Request.responseText);
         console.log(response);
     }
