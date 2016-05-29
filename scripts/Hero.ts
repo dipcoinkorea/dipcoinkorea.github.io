@@ -14,8 +14,9 @@ class Hero  {
         private _Interval; 
         
         constructor(container: HTMLElement) {
-            this.Elt = document.createElement("div");
+            this.Elt = document.createElement("a");
             
+            this.Elt.setAttribute("href", "home.html");
             this.Elt.classList.add("hero")
             this.Elt.style.width = HERO_WIDTH + "px";
             this.Elt.style.height = HERO_HEIGHT + "px";

@@ -1,2 +1,21 @@
-@background-color: purple;
+@background-color: #8a02a9;
+
 @title-font: 'bebasregular';
+
+@website-maxwidth: 1280px;
+@width-gutter: 20px;
+
+@header-height: 80px;
+
+.clearfix() {
+    &:before, &:after {
+        content: "";
+        display: table;
+    }
+
+    &:after {
+        clear: both;
+    }
+
+    *zoom: 1;
+}

@@ -13,9 +13,28 @@ module Tumblr {
     }
     
     var _BuildPost = (post: ITumblrPost): HTMLElement => {
-        var container = document.createElement("article");
-        console.log(post);
-        container.innerHTML = post.Title + "<br />" + post.Text;
+        var 
+            container = document.createElement("article"),
+            postHeader = document.createElement("header"),
+            postTitleELt = document.createElement("h3"),
+            postDateElt = document.createElement("time"),
+            postTextContent = document.createElement("div");
+        
+        container.classList.add("tumblr-post");
+        
+        postHeader.classList.add("tumblr-post-header");
+        container.appendChild(postHeader);
+        
+        postDateElt.innerHTML = post.Date;
+        postHeader.appendChild(postDateElt);
+        
+        postTitleELt.classList.add("tumblr-post-title");
+        postTitleELt.innerHTML = post.Title;
+        postHeader.appendChild(postTitleELt);
+        
+        postTextContent.classList.add("tumblr-post-text");
+        postTextContent.innerHTML = post.Text;
+        container.appendChild(postTextContent);
         
         return container;
     }

@@ -1,0 +1,25 @@
+.main-nav-outer {
+  position: fixed;
+  left: 0;
+  right: 0;
+  top: 0;
+  background-color: #8a02a9;
+  height: 80px;
+}
+.main-nav {
+  max-width: 1280px;
+  margin: 0 auto;
+  line-height: 80px;
+}
+.main-nav-link {
+  color: #000;
+  font-family: 'bebasregular';
+  font-size: 24px;
+  text-decoration: none;
+  display: inline-block;
+  margin-right: 20px;
+}
+.main-nav-link:hover,
+.main-nav-link.active {
+  text-decoration: underline;
+}

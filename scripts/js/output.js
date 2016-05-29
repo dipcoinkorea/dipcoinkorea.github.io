@@ -71,7 +71,8 @@ var Hero = (function () {
                     break;
             }
         };
-        this.Elt = document.createElement("div");
+        this.Elt = document.createElement("a");
+        this.Elt.setAttribute("href", "home.html");
         this.Elt.classList.add("hero");
         this.Elt.style.width = HERO_WIDTH + "px";
         this.Elt.style.height = HERO_HEIGHT + "px";
@@ -175,9 +176,18 @@ var Tumblr;
         _GetPosts();
     };
     var _BuildPost = function (post) {
-        var container = document.createElement("article");
-        console.log(post);
-        container.innerHTML = post.Title + "<br />" + post.Text;
+        var container = document.createElement("article"), postHeader = document.createElement("header"), postTitleELt = document.createElement("h3"), postDateElt = document.createElement("time"), postTextContent = document.createElement("div");
+        container.classList.add("tumblr-post");
+        postHeader.classList.add("tumblr-post-header");
+        container.appendChild(postHeader);
+        postDateElt.innerHTML = post.Date;
+        postHeader.appendChild(postDateElt);
+        postTitleELt.classList.add("tumblr-post-title");
+        postTitleELt.innerHTML = post.Title;
+        postHeader.appendChild(postTitleELt);
+        postTextContent.classList.add("tumblr-post-text");
+        postTextContent.innerHTML = post.Text;
+        container.appendChild(postTextContent);
         return container;
     };
     var _ImportValue = function (obj, properties) {
