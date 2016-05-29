@@ -166,7 +166,7 @@ var Playground;
         });
     }
 })(Playground || (Playground = {}));
-var TUMBLR_REQ_URL = "http:" + "//rickymarou.tumblr.com/api/read/json";
+var TUMBLR_REQ_URL = "https:" + "//rickymarou.tumblr.com/api/read/json";
 var POST_PER_PAGE = 10;
 var Tumblr;
 (function (Tumblr) {

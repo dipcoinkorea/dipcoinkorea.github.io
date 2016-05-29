@@ -1,4 +1,4 @@
-const TUMBLR_REQ_URL: string = "http:" + "//rickymarou.tumblr.com/api/read/json";
+const TUMBLR_REQ_URL: string = "https:" + "//rickymarou.tumblr.com/api/read/json";
 const POST_PER_PAGE: number = 10;
 
 module Tumblr {
