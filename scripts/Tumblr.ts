@@ -26,7 +26,7 @@ module Tumblr {
     
     export var Init = (container: HTMLElement)  => {
         _Container = container;
-        _GetPosts();
+        //_GetPosts();
         
         _Request = new XMLHttpRequest();
         _Request.onreadystatechange = _GetPostsReadyStateChange;

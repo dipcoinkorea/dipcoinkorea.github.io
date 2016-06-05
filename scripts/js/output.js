@@ -184,7 +184,7 @@ var Tumblr;
     };
     Tumblr.Init = function (container) {
         _Container = container;
-        _GetPosts();
+        //_GetPosts();
         _Request = new XMLHttpRequest();
         _Request.onreadystatechange = _GetPostsReadyStateChange;
         _Request.open("GET", TUMBLR_REQ_XHR, true); //+ "?start=" + _CurIndex + "&num=" + POST_PER_PAGE
