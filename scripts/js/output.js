@@ -170,7 +170,7 @@ var TUMBLR_ID = "dipcoin";
 var TUMBLR_REQ_URL = "https:" + "//" + TUMBLR_ID + ".tumblr.com/api/read/json";
 var POST_PER_PAGE = 10;
 var TUMBLR_API_KEY = "osyd8e6IT3O9iaWaflEbzjzaqou01t0fd6YoM8IhgXmuOP8stx";
-var TUMBLR_REQ_XHR = "https:" + "//api.tumblr.com/v2/blog/" + TUMBLR_ID + ".tumblr.com/posts?api_key=" + TUMBLR_API_KEY;
+var TUMBLR_REQ_XHR = "https:" + "//api.tumblr.com/v2/blog/" + TUMBLR_ID + ".tumblr.com/info?api_key=" + TUMBLR_API_KEY;
 var Tumblr;
 (function (Tumblr) {
     var _Container, _Loader, _Request, _CurIndex = 0;
@@ -187,7 +187,7 @@ var Tumblr;
         _GetPosts();
         _Request = new XMLHttpRequest();
         _Request.onreadystatechange = _GetPostsReadyStateChange;
-        _Request.open("GET", TUMBLR_REQ_XHR + "?start=" + _CurIndex + "&num=" + POST_PER_PAGE, true);
+        _Request.open("GET", TUMBLR_REQ_XHR, true); //+ "?start=" + _CurIndex + "&num=" + POST_PER_PAGE
         _Request.setRequestHeader('Accept', 'application/json');
         _Request.setRequestHeader("Content-type", "application/json");
         _Request.send();
