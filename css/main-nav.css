@@ -3,7 +3,7 @@
   left: 0;
   right: 0;
   top: 0;
-  background-color: #8a02a9;
+  background-color: #aa19a5;
   height: 80px;
 }
 .main-nav {
@@ -12,7 +12,7 @@
   line-height: 80px;
 }
 .main-nav-link {
-  color: #000;
+  color: #fff;
   font-family: 'bebasregular';
   font-size: 24px;
   text-decoration: none;
@@ -22,4 +22,15 @@
 .main-nav-link:hover,
 .main-nav-link.active {
   text-decoration: underline;
+}
+@media screen and (min-width: 601px) and (max-width: 1280px) {
+  .main-nav {
+    margin: 0 40px;
+  }
+}
+@media screen and (max-width: 600px) {
+  .main-nav {
+    margin: 0 20px;
+    line-height: 26px;
+  }
 }

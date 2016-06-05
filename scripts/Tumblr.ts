@@ -1,15 +1,39 @@
-const TUMBLR_REQ_URL: string = "https:" + "//rickymarou.tumblr.com/api/read/json";
+const TUMBLR_ID = "dipcoin";
+const TUMBLR_REQ_URL: string = "https:" + "//" + TUMBLR_ID + ".tumblr.com/api/read/json";
 const POST_PER_PAGE: number = 10;
+
+
+const TUMBLR_API_KEY = "osyd8e6IT3O9iaWaflEbzjzaqou01t0fd6YoM8IhgXmuOP8stx";
+const TUMBLR_REQ_XHR: string = "https:" + "//api.tumblr.com/v2/blog/" + TUMBLR_ID + ".tumblr.com/posts?api_key=" + TUMBLR_API_KEY;
 
 module Tumblr {
     var 
         _Container: HTMLElement,
         _Loader: HTMLElement,
+        _Request: XMLHttpRequest,
         _CurIndex = 0;
+        
+    var _GetPostsReadyStateChange = () => {
+        if (_Request.readyState !== 4)
+            return;
+
+        if(_Request.status != 200) {
+            console.log("error");
+        }
+        
+        console.log(_Request.response);
+    }
     
     export var Init = (container: HTMLElement)  => {
         _Container = container;
         _GetPosts();
+        
+        _Request = new XMLHttpRequest();
+        _Request.onreadystatechange = _GetPostsReadyStateChange;
+        _Request.open("GET", TUMBLR_REQ_XHR + "?start=" + _CurIndex + "&num=" + POST_PER_PAGE, true);
+        _Request.setRequestHeader('Accept', 'application/json');
+        _Request.setRequestHeader("Content-type", "application/json");
+        _Request.send();
     }
     
     var _BuildPost = (post: ITumblrPost): HTMLElement => {
@@ -50,6 +74,8 @@ module Tumblr {
     
     var _PostsLoaded = () => {
         var posts = window["tumblr_api_read"].posts;
+        
+        console.log(posts);
         
         for(var i = 0; i < posts.length; i++) {
             var post = posts[i];

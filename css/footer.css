@@ -1,0 +1,47 @@
+.footer-outer {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 1px;
+}
+.footer {
+  max-width: 1280px;
+  margin: 0 auto;
+  position: relative;
+}
+.footer-inner {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 120px;
+  height: 200px;
+}
+.footer-nav {
+  position: absolute;
+  bottom: 0;
+  white-space: nowrap;
+  font-size: 0;
+  width: 90px;
+  left: 50%;
+  margin-left: -45px;
+}
+.footer-link {
+  display: inline-block;
+  width: 30px;
+  height: 30px;
+  background-color: #aaa;
+}
+.footer-link:nth-child(2n) {
+  background-color: #ccc;
+}
+.footer-logo {
+  position: absolute;
+  bottom: 50px;
+  width: 90px;
+  left: 50%;
+  margin-left: -45px;
+}
+.footer-logo img {
+  max-width: 100%;
+}

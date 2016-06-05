@@ -5,6 +5,7 @@ html,body {
     height: 100%;
     position: relative;
     background-color: @background-color;
+    color: @font-color;
 }
 
 #container {
@@ -14,7 +15,30 @@ html,body {
 }
 
 .content {
-    padding-top: @header-height;
-    max-width: @website-maxwidth;
+    padding: @header-height 0 0 (@footer-width + 2*@width-gutter);
+    max-width: @website-maxwidth - (@footer-width + 2*@width-gutter);
     margin: 0 auto;
+}
+
+.container-inner {
+    margin-right: @width-gutter;
+}
+
+//Tablet + Laptop
+@media screen and (min-width: (@mobile-width + 1)) and (max-width: @website-maxwidth) {
+    .container-inner {
+        margin-right: @website-gutter;
+    }
+}
+
+
+//Mobile
+@media screen and (max-width: @mobile-width) {
+    .container-inner {
+        margin: 0 @width-gutter;
+    }
+    
+    .content {
+        padding-left: 0;
+    }
 }

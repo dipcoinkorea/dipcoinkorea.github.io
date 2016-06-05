@@ -12,11 +12,11 @@
 .main-nav {
     max-width: @website-maxwidth;
     margin: 0 auto;
-    line-height: @header-height
+    line-height: @header-height;
 }
 
 .main-nav-link {
-    color: #000;
+    color: @font-color;
     font-family: @title-font;
     font-size: 24px;
     text-decoration: none;
@@ -25,5 +25,20 @@
     
     &:hover, &.active {
         text-decoration: underline;    
+    }
+}
+
+//Tablet + Laptop
+@media screen and (min-width: (@mobile-width + 1)) and (max-width: @website-maxwidth) {
+     .main-nav {
+         margin: 0 @website-gutter;
+     }
+}
+
+//Mobile
+@media screen and (max-width: @mobile-width) {
+    .main-nav {
+        margin: 0 @width-gutter;
+        line-height: 26px;
     }
 }

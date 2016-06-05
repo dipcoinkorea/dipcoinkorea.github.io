@@ -18,3 +18,8 @@
   padding: 0 10px;
   font-family: 'bebasregular';
 }
+@media screen and (max-width: 1024px) {
+  .home-section {
+    width: 100%;
+  }
+}
