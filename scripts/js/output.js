@@ -30,6 +30,20 @@ var Helpers;
             result.push(Direction.Bottom);
         return result;
     };
+    Helpers.RenderImg = function (images, sizes) {
+        var img = document.createElement("img"), srcset = "";
+        for (var i = 0; i < images.length; i++) {
+            srcset += images[i].url + " " + images[i].width + "w";
+            if (i < images.length)
+                srcset += ",";
+            else
+                img.setAttribute("src", images[i].url);
+        }
+        img.setAttribute("srcset", srcset);
+        if (sizes)
+            img.setAttribute("sizes", sizes);
+        return img;
+    };
 })(Helpers || (Helpers = {}));
 var Direction;
 (function (Direction) {
@@ -166,81 +180,113 @@ var Playground;
         });
     }
 })(Playground || (Playground = {}));
-var TUMBLR_ID = "dipcoin";
-var TUMBLR_REQ_URL = "https:" + "//" + TUMBLR_ID + ".tumblr.com/api/read/json";
-var POST_PER_PAGE = 10;
 var TUMBLR_API_KEY = "osyd8e6IT3O9iaWaflEbzjzaqou01t0fd6YoM8IhgXmuOP8stx";
-var TUMBLR_REQ_XHR = "https:" + "//api.tumblr.com/v2/blog/" + TUMBLR_ID + ".tumblr.com/info?api_key=" + TUMBLR_API_KEY;
+var TUMBLR_ID = "dipcoin";
+var POST_PER_PAGE = 10;
 var Tumblr;
 (function (Tumblr) {
-    var _Container, _Loader, _Request, _CurIndex = 0;
-    var _GetPostsReadyStateChange = function () {
-        if (_Request.readyState !== 4)
-            return;
-        if (_Request.status != 200) {
-            console.log("error");
-        }
-        console.log(_Request.response);
-    };
+    var _Container, _Loader, _CurIndex = 0;
     Tumblr.Init = function (container) {
         _Container = container;
-        //_GetPosts();
-        _Request = new XMLHttpRequest();
-        _Request.onreadystatechange = _GetPostsReadyStateChange;
-        _Request.open("GET", TUMBLR_REQ_XHR, true); //+ "?start=" + _CurIndex + "&num=" + POST_PER_PAGE
-        _Request.setRequestHeader('Accept', 'application/json');
-        _Request.setRequestHeader("Content-type", "application/json");
-        _Request.send();
+        _GetPosts();
+    };
+    Tumblr.PostsLoaded = function (o) {
+        var posts = o.response.posts;
+        for (var i = 0; i < posts.length; i++) {
+            var post = posts[i];
+            console.log(post);
+            _Container.appendChild(_BuildPost(post));
+        }
+    };
+    //jsonp.
+    var _GetPosts = function () {
+        var scriptTag = document.getElementById("tumblr-data");
+        if (scriptTag != null) {
+            scriptTag.parentElement.removeChild(scriptTag);
+        }
+        var reqUrl = "https://api.tumblr.com/v2/blog/" + TUMBLR_ID + ".tumblr.com/posts?api_key=" + TUMBLR_API_KEY;
+        scriptTag = document.createElement("script");
+        scriptTag.id = "tumblr-data";
+        scriptTag.setAttribute("type", "text/javascript");
+        scriptTag.setAttribute("src", reqUrl + "&callback=Tumblr.PostsLoaded&start=" + _CurIndex + "&num=" + POST_PER_PAGE);
+        document.body.appendChild(scriptTag);
+    };
+    //Rendering
+    var _BuildPhotos = function (post) {
+        if (!post.photos)
+            return null;
+        var photos = [];
+        for (var i = 0; i < post.photos.length; i++) {
+            photos.push(Helpers.RenderImg(post.photos[i].alt_sizes));
+        }
+        return photos;
     };
     var _BuildPost = function (post) {
         var container = document.createElement("article"), postHeader = document.createElement("header"), postTitleELt = document.createElement("h3"), postDateElt = document.createElement("time"), postTextContent = document.createElement("div");
         container.classList.add("tumblr-post");
         postHeader.classList.add("tumblr-post-header");
         container.appendChild(postHeader);
-        postDateElt.innerHTML = post.Date;
+        postDateElt.innerHTML = post.date;
         postHeader.appendChild(postDateElt);
-        postTitleELt.classList.add("tumblr-post-title");
-        postTitleELt.innerHTML = post.Title;
-        postHeader.appendChild(postTitleELt);
-        postTextContent.classList.add("tumblr-post-text");
-        postTextContent.innerHTML = post.Text;
-        container.appendChild(postTextContent);
+        if (post.title) {
+            postTitleELt.classList.add("tumblr-post-title");
+            postTitleELt.innerHTML = post.title;
+            postHeader.appendChild(postTitleELt);
+        }
+        if (post.text) {
+            postTextContent.classList.add("tumblr-post-text");
+            postTextContent.innerHTML = post.text;
+            container.appendChild(postTextContent);
+        }
+        if (post.body) {
+            postTextContent.classList.add("tumblr-post-text");
+            postTextContent.innerHTML = post.body;
+            container.appendChild(postTextContent);
+        }
+        if (post.type == "video" && post.player) {
+            //get the largest video
+            var curMax = 0, largest = null;
+            for (var i = 0; i < post.player.length; i++) {
+                var video = post.player[i], videoWidth = video.width;
+                curMax = Math.max(curMax, videoWidth);
+                if (videoWidth == curMax)
+                    largest = video;
+            }
+            //insert the embed
+            var videoParent = document.createElement("div");
+            videoParent.classList.add("tumblr-video");
+            videoParent.innerHTML = largest.embed_code;
+            var player = videoParent.firstElementChild;
+            if (player.nodeName === "VIDEO")
+                player.controls = true;
+            container.appendChild(videoParent);
+        }
+        if (post.type == "audio" && post.audio_type == "soundcloud") {
+            var audioParent = document.createElement("div");
+            audioParent.classList.add("tumblr-audio");
+            audioParent.innerHTML = post.player;
+            container.appendChild(audioParent);
+        }
+        if (post.photos) {
+            var photoParent = document.createElement("div"), photoElts = _BuildPhotos(post);
+            for (var i = 0; i < photoElts.length; i++) {
+                photoParent.appendChild(photoElts[i]);
+            }
+            photoParent.classList.add("tumblr-images");
+            container.appendChild(photoParent);
+        }
+        if (post.tags && post.tags.length > 0) {
+            var tags = document.createElement("div");
+            tags.classList.add("tumblr-tags");
+            for (var i = 0; i < post.tags.length; i++) {
+                var tagElt = document.createElement("span");
+                tagElt.classList.add("tumblr-tag");
+                tagElt.innerHTML = "#" + post.tags[i];
+                tags.appendChild(tagElt);
+            }
+            container.appendChild(tags);
+        }
         return container;
-    };
-    var _ImportValue = function (obj, properties) {
-        var result = "";
-        for (var i = 0; i < properties.length; i++) {
-            var prop = properties[i];
-            result += obj[prop] ? obj[prop] : "";
-        }
-        return result;
-    };
-    var _PostsLoaded = function () {
-        var posts = window["tumblr_api_read"].posts;
-        console.log(posts);
-        for (var i = 0; i < posts.length; i++) {
-            var post = posts[i];
-            _Container.appendChild(_BuildPost({
-                Date: _ImportValue(post, ["date-gmt"]),
-                Text: _ImportValue(post, ["photo-caption", "regular-body"]),
-                Title: _ImportValue(post, ["regular-title"]),
-                Type: _ImportValue(post, ["type"])
-            }));
-            _CurIndex++;
-        }
-    };
-    //Not using XMLHTTPRequest because of CORS :(.
-    var _GetPosts = function () {
-        var scriptTag = document.getElementById("tumblr-data");
-        if (scriptTag != null) {
-            scriptTag.parentElement.removeChild(scriptTag);
-        }
-        scriptTag = document.createElement("script");
-        scriptTag.id = "tumblr-data";
-        scriptTag.setAttribute("type", "text/javascript");
-        scriptTag.setAttribute("src", TUMBLR_REQ_URL + "?start=" + _CurIndex + "&num=" + POST_PER_PAGE);
-        scriptTag.addEventListener("load", _PostsLoaded);
-        document.body.appendChild(scriptTag);
     };
 })(Tumblr || (Tumblr = {}));
 var Home;

@@ -40,4 +40,25 @@ module Helpers {
         return result;
     }
     
+    export var RenderImg = (images: ITumblrPhotoSrc[], sizes?: string) => {
+        var 
+            img = document.createElement("img"),
+            srcset = "";
+        
+        for(var i = 0; i < images.length; i++) {
+            srcset += images[i].url + " " + images[i].width + "w";
+            
+            if(i < images.length) 
+                srcset += ",";
+            else
+                img.setAttribute("src", images[i].url);    
+        }
+        
+        img.setAttribute("srcset", srcset);
+        if(sizes)
+            img.setAttribute("sizes", sizes);
+            
+        return  img;
+    }
+    
 }

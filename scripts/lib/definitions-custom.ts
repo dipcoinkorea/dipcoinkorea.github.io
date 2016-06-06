@@ -24,8 +24,34 @@ interface IPost {
 }
 
 interface ITumblrPost {
-    Date: string;
-    Type: string;
-    Text?: string;
-    Title?: string;
+    date: string;
+    type: string;
+    id: number;
+    text?: string;
+    body?: string;
+    title?: string;
+    photos?: ITumblrPhoto[];
+    player?: any;
+    embed?: any;
+    video_type?: string;
+    audio_type?: string;
+    tags?: string[];
+}
+
+interface ITumblrVideo {
+    embed_code: string;
+    width: number;
+}
+
+interface ITumblrPhotoSrc {
+    height: number;
+    width: number;
+    url: string;
+}
+
+interface ITumblrPhoto {
+    caption: string;
+    height: number;
+    original_size: ITumblrPhotoSrc;
+    alt_sizes: ITumblrPhotoSrc[];
 }

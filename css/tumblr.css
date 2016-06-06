@@ -1,3 +1,11 @@
 .tumblr-post {
   padding: 0 10px;
+  margin-bottom: 40px;
+}
+.tumblr-post-header {
+  font-family: 'bebasregular';
+  margin-bottom: 20px;
+}
+.tumblr-images img {
+  margin-bottom: 20px;
 }
