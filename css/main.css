@@ -5,8 +5,11 @@ body {
   position: relative;
   background-color: #aa19a5;
   color: #fff;
+  font-family: 'Open Sans', sans-serif;
 }
-img {
+img,
+video,
+audio {
   max-width: 100%;
 }
 #container {

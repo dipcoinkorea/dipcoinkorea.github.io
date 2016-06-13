@@ -33,7 +33,7 @@ gulp.task('ts', function() {
 });
 
 gulp.task('js', function() {
-    gulp.src(['./scripts/js/**/*.js'])
+    gulp.src(['./scripts/js/lib/*.js', './scripts/js/*.js'])
         .pipe(sourcemaps.init())
         .pipe(uglify())    
         .pipe(concat('scripts.js'))

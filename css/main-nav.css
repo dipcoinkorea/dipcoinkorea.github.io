@@ -5,6 +5,7 @@
   top: 0;
   background-color: #aa19a5;
   height: 80px;
+  z-index: 9999;
 }
 .main-nav {
   max-width: 1280px;

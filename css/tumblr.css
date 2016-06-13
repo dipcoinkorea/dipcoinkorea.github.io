@@ -3,9 +3,44 @@
   margin-bottom: 40px;
 }
 .tumblr-post-header {
-  font-family: 'bebasregular';
   margin-bottom: 20px;
 }
-.tumblr-images img {
+.tumblr-images {
+  position: relative;
+  height: 0;
+  padding-bottom: 71%;
   margin-bottom: 20px;
+}
+.tumblr-images-slide {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+}
+.tumblr-images-slide img {
+  position: absolute;
+  max-width: 100%;
+  max-height: 100%;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+}
+.tumblr-slider-link {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  z-index: 200;
+  width: 50%;
+  background-image: url('data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7');
+}
+.tumblr-slider-link.next {
+  right: 0;
+}
+.tumblr-slider-link.previous {
+  left: 0;
+}
+.tumblr-post-date {
+  font-size: 13px;
+  margin: 5px 0;
 }

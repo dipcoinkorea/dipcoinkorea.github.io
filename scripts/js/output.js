@@ -180,6 +180,56 @@ var Playground;
         });
     }
 })(Playground || (Playground = {}));
+var SNDC_USERID = '200666760';
+var SNDC_CLIENTID = '164c25c5bfda5b9c34ae8f71d114dee9';
+var Soundcloud;
+(function (Soundcloud) {
+    var TrackContainer = document.getElementById("medias");
+    var _BuildTrackEmbed = function (track) {
+        var iframe = null, container = document.createElement("article"), header = document.createElement("header"), title = document.createElement("h3"), dateElt = document.createElement("time"), description = document.createElement("div");
+        var xhr = new XMLHttpRequest();
+        xhr.open("get", "https://api.soundcloud.com/oembed?url=" + track.permalink_url + "&maxheight=166&format=json&client_id=" + SNDC_CLIENTID, true);
+        xhr.onload = function (o) {
+            var response = JSON.parse(o.target.responseText);
+            var iframeParent = document.createElement("div");
+            iframeParent.innerHTML = response.html;
+            iframe = iframeParent.firstChild;
+            container.classList.add("soundcloud-track");
+            container.classList.add("post-item");
+            title.classList.add("soundcloud-track-title");
+            title.classList.add("post-item-title");
+            title.innerHTML = track.title;
+            header.appendChild(title);
+            dateElt.classList.add("soundcloud-track-date");
+            dateElt.classList.add("post-item-date");
+            dateElt.innerHTML = moment(track.created_at).format("dd MMM Do YYYY");
+            header.appendChild(dateElt);
+            header.classList.add("soundclound-track-header");
+            header.classList.add("post-item-header");
+            container.appendChild(header);
+            container.appendChild(iframe);
+            description.classList.add("soundclound-track-description");
+            description.innerHTML = track.description;
+            container.appendChild(description);
+            TrackContainer.appendChild(container);
+        };
+        xhr.send(null);
+    };
+    Soundcloud.PostsLoaded = function (o) {
+        var response = JSON.parse(o.target.responseText);
+        for (var i = 0; i < response.length; i++) {
+            var track = response[i];
+            _BuildTrackEmbed(track);
+        }
+    };
+    var _GetPosts = function () {
+        var xhr = new XMLHttpRequest();
+        xhr.open("get", "https://api.soundcloud.com/users/" + SNDC_USERID + "/tracks?client_id=" + SNDC_CLIENTID, true);
+        xhr.onload = Soundcloud.PostsLoaded;
+        xhr.send(null);
+    };
+    _GetPosts();
+})(Soundcloud || (Soundcloud = {}));
 var TUMBLR_API_KEY = "osyd8e6IT3O9iaWaflEbzjzaqou01t0fd6YoM8IhgXmuOP8stx";
 var TUMBLR_ID = "dipcoin";
 var POST_PER_PAGE = 10;
@@ -194,7 +244,6 @@ var Tumblr;
         var posts = o.response.posts;
         for (var i = 0; i < posts.length; i++) {
             var post = posts[i];
-            console.log(post);
             _Container.appendChild(_BuildPost(post));
         }
     };
@@ -226,7 +275,8 @@ var Tumblr;
         container.classList.add("tumblr-post");
         postHeader.classList.add("tumblr-post-header");
         container.appendChild(postHeader);
-        postDateElt.innerHTML = post.date;
+        postDateElt.classList.add("tumblr-post-date");
+        postDateElt.innerHTML = moment(post.date).format("dd MMM Do YYYY");
         postHeader.appendChild(postDateElt);
         if (post.title) {
             postTitleELt.classList.add("tumblr-post-title");
@@ -268,12 +318,32 @@ var Tumblr;
             container.appendChild(audioParent);
         }
         if (post.photos) {
-            var photoParent = document.createElement("div"), photoElts = _BuildPhotos(post);
+            var nextLink = document.createElement("a"), prevLink = document.createElement("a"), photoParent = document.createElement("div"), photoElts = _BuildPhotos(post);
             for (var i = 0; i < photoElts.length; i++) {
-                photoParent.appendChild(photoElts[i]);
+                var slide = document.createElement("figure");
+                if (i == 0)
+                    slide.classList.add("Wallop-item--current");
+                slide.classList.add("tumblr-images-slide");
+                slide.classList.add("Wallop-item");
+                slide.appendChild(photoElts[i]);
+                photoParent.appendChild(slide);
             }
             photoParent.classList.add("tumblr-images");
             container.appendChild(photoParent);
+            if (photoElts.length > 1) {
+                nextLink.setAttribute("href", "javascript:void(0)");
+                nextLink.classList.add("tumblr-slider-link");
+                nextLink.classList.add("next");
+                photoParent.appendChild(nextLink);
+                prevLink.setAttribute("href", "javascript:void(0)");
+                prevLink.classList.add("tumblr-slider-link");
+                prevLink.classList.add("previous");
+                photoParent.appendChild(prevLink);
+                var slider = new Wallop(photoParent);
+                slider.carousel = true;
+                nextLink.addEventListener("click", slider.next.bind(slider));
+                prevLink.addEventListener("click", slider.previous.bind(slider));
+            }
         }
         if (post.tags && post.tags.length > 0) {
             var tags = document.createElement("div");
@@ -289,6 +359,52 @@ var Tumblr;
         return container;
     };
 })(Tumblr || (Tumblr = {}));
+var YOUTUBE_API_KEY = "AIzaSyCai9IP1ePCF4Kr0l7B3fK3MIOGHyaq5zk";
+var YOUTUBE_CHANNEL_ID = "UCdA_uKncEZusQ-SsfEYbtmA";
+var Youtube;
+(function (Youtube) {
+    var Container = document.getElementById("medias");
+    var _BuildVideo = function (ytItem) {
+        console.log(ytItem);
+        var iframeParent = document.createElement("div"), iframe = document.createElement("iframe"), container = document.createElement("article"), header = document.createElement("header"), title = document.createElement("h3"), dateElt = document.createElement("time"), description = document.createElement("div");
+        container.classList.add("youtube-item");
+        container.classList.add("post-item");
+        title.classList.add("youtube-item-title");
+        title.classList.add("post-item-title");
+        title.innerHTML = ytItem.snippet.title;
+        header.appendChild(title);
+        dateElt.classList.add("youtube-item-date");
+        dateElt.classList.add("post-item-date");
+        dateElt.innerHTML = moment(ytItem.snippet.publishedAt).format("dd MMM Do YYYY");
+        header.appendChild(dateElt);
+        header.classList.add("soundclound-track-header");
+        header.classList.add("post-item-header");
+        container.appendChild(header);
+        iframeParent.classList.add("youtube-item-iframe-outer");
+        iframe.allowFullscreen = true;
+        iframe.frameBorder = "0";
+        iframe.src = "https://www.youtube.com/embed/" + ytItem.id.videoId;
+        iframeParent.appendChild(iframe);
+        container.appendChild(iframeParent);
+        description.classList.add("soundclound-track-description");
+        description.innerHTML = ytItem.snippet.description;
+        container.appendChild(description);
+        return container;
+    };
+    var _GetPosts = function () {
+        var xhr = new XMLHttpRequest();
+        xhr.open("get", "https://www.googleapis.com/youtube/v3/search?key="
+            + YOUTUBE_API_KEY + "&channelId=" + YOUTUBE_CHANNEL_ID + "&part=snippet", true);
+        xhr.onload = function (o) {
+            var response = JSON.parse(o.target.responseText);
+            for (var i = 0; i < response.items.length; i++) {
+                Container.appendChild(_BuildVideo(response.items[i]));
+            }
+        };
+        xhr.send(null);
+    };
+    _GetPosts();
+})(Youtube || (Youtube = {}));
 var Home;
 (function (Home) {
     var _TumblrContainer = document.getElementById("tumblr");

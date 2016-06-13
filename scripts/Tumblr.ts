@@ -2,6 +2,8 @@ const TUMBLR_API_KEY = "osyd8e6IT3O9iaWaflEbzjzaqou01t0fd6YoM8IhgXmuOP8stx";
 const TUMBLR_ID: string = "dipcoin";
 const POST_PER_PAGE: number = 10;
 
+declare var Wallop, moment: any;
+
 module Tumblr {
     var 
         _Container: HTMLElement,
@@ -17,7 +19,6 @@ module Tumblr {
         var posts: ITumblrPost[] = o.response.posts;
         for(var i = 0; i < posts.length; i++) {
             var post = posts[i];
-            console.log(post);
             _Container.appendChild(_BuildPost(post));
         }
         
@@ -67,8 +68,9 @@ module Tumblr {
         
         postHeader.classList.add("tumblr-post-header");
         container.appendChild(postHeader);
-        
-        postDateElt.innerHTML = post.date;
+
+        postDateElt.classList.add("tumblr-post-date");
+        postDateElt.innerHTML = moment(post.date).format("dd MMM Do YYYY");
         postHeader.appendChild(postDateElt);
         
         if(post.title) {
@@ -126,15 +128,44 @@ module Tumblr {
         
         if(post.photos) {
             var 
+                nextLink = document.createElement("a"),
+                prevLink = document.createElement("a"),
                 photoParent = document.createElement("div"),
                 photoElts = _BuildPhotos(post);
             
             for(var i = 0; i < photoElts.length; i++) {
-                photoParent.appendChild(photoElts[i]);
+                var slide = document.createElement("figure");
+
+                if(i==0)
+                    slide.classList.add("Wallop-item--current");
+
+                slide.classList.add("tumblr-images-slide");
+                slide.classList.add("Wallop-item");
+                slide.appendChild(photoElts[i]);
+                photoParent.appendChild(slide);
             }
             
             photoParent.classList.add("tumblr-images");
             container.appendChild(photoParent);
+            
+            if(photoElts.length > 1) {
+                nextLink.setAttribute("href", "javascript:void(0)");
+                nextLink.classList.add("tumblr-slider-link");
+                nextLink.classList.add("next");
+                photoParent.appendChild(nextLink);
+
+                prevLink.setAttribute("href", "javascript:void(0)");
+                prevLink.classList.add("tumblr-slider-link");
+                prevLink.classList.add("previous");
+                photoParent.appendChild(prevLink);
+
+                var slider = new Wallop(photoParent);
+                slider.carousel = true;
+
+                nextLink.addEventListener("click", slider.next.bind(slider));
+                prevLink.addEventListener("click", slider.previous.bind(slider));
+            }
+            
         }
         
         if(post.tags && post.tags.length > 0) {

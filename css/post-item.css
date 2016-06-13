@@ -1,0 +1,15 @@
+.post-item {
+  margin-bottom: 40px;
+  margin-left: 10px;
+  margin-right: 10px;
+}
+.post-item-header {
+  margin-bottom: 20px;
+}
+.post-item-title {
+  font-family: 'bebasregular';
+  font-size: 22px;
+}
+.post-item-date {
+  font-size: 13px;
+}

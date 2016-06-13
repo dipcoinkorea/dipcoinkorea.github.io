@@ -17,6 +17,7 @@
 .home-section-title {
   padding: 0 10px;
   font-family: 'bebasregular';
+  margin-bottom: 40px;
 }
 @media screen and (max-width: 1024px) {
   .home-section {
