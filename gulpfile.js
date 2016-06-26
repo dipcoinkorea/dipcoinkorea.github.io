@@ -10,14 +10,14 @@ var sourcemaps = require('gulp-sourcemaps');
 //var tsProject = ts.createProject('tsconfig.json');
 
 gulp.task('less', function() {
-    gulp.src('./less/**/*.less')
+    gulp.src(['./less/**/*.less'])
         .pipe(less())
         .pipe(gulp.dest('./css'))
     }
 );
 
 gulp.task('css', function() {
-    gulp.src('./css/**/*.css')
+    gulp.src(['./css/**/*.css',, '!./css/tlkio_theme.css'])
         .pipe(autoprefixer())
         .pipe(cssmin())
         .pipe(concat('styles.css'))
