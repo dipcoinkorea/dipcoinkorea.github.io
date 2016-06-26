@@ -25,6 +25,13 @@ audio {
 .container-inner {
   margin-right: 20px;
 }
+.chat {
+  position: absolute;
+  right: 0;
+  bottom: 0;
+  width: 300px;
+  height: 300px;
+}
 @media screen and (min-width: 601px) and (max-width: 1280px) {
   .container-inner {
     margin-right: 40px;
