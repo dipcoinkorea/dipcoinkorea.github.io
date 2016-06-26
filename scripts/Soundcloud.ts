@@ -72,6 +72,8 @@ module Soundcloud {
         xhr.send(null);
     }
 
-    _GetPosts();
+
+    if(TrackContainer)
+        _GetPosts();
 
 }

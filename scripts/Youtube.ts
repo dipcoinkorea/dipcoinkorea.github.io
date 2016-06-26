@@ -60,6 +60,7 @@ module Youtube {
         };
         xhr.send(null);
     }
-
-    _GetPosts();
+    
+    if(Container)
+        _GetPosts();
 }

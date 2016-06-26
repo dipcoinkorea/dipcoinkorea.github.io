@@ -228,7 +228,8 @@ var Soundcloud;
         xhr.onload = Soundcloud.PostsLoaded;
         xhr.send(null);
     };
-    _GetPosts();
+    if (TrackContainer)
+        _GetPosts();
 })(Soundcloud || (Soundcloud = {}));
 var TUMBLR_API_KEY = "osyd8e6IT3O9iaWaflEbzjzaqou01t0fd6YoM8IhgXmuOP8stx";
 var TUMBLR_ID = "dipcoin";
@@ -402,7 +403,8 @@ var Youtube;
         };
         xhr.send(null);
     };
-    _GetPosts();
+    if (Container)
+        _GetPosts();
 })(Youtube || (Youtube = {}));
 var Home;
 (function (Home) {
