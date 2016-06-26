@@ -1,0 +1,182 @@
+{
+  "name": "icons",
+  "css_prefix_text": "icon-",
+  "css_use_suffix": false,
+  "hinting": true,
+  "units_per_em": 1000,
+  "ascent": 850,
+  "glyphs": [
+    {
+      "uid": "8e04c98c8f5ca0a035776e3001ad2638",
+      "css": "facebook",
+      "code": 59392,
+      "src": "fontawesome"
+    },
+    {
+      "uid": "dff942d95eb1b3f1be140e622d0a7c74",
+      "css": "soundcloud",
+      "code": 59393,
+      "src": "fontawesome"
+    },
+    {
+      "uid": "4c1ef492f1d2c39a2250ae457cee2a6e",
+      "css": "instagram",
+      "code": 59394,
+      "src": "fontawesome"
+    },
+    {
+      "uid": "d70de04c0b5882b865b459c334cc1ad3",
+      "css": "dot-1",
+      "code": 59402,
+      "src": "custom_icons",
+      "selected": false,
+      "svg": {
+        "path": "M879.5 500C879.5 709.6 709.6 879.5 500 879.5S120.5 709.6 120.5 500 290.4 120.5 500 120.5 879.5 290.4 879.5 500Z",
+        "width": 1000
+      },
+      "search": [
+        "dot"
+      ]
+    },
+    {
+      "uid": "7102f8f972a7b960ab54d0d0e261b7bf",
+      "css": "dot-1",
+      "code": 59408,
+      "src": "custom_icons",
+      "selected": false,
+      "svg": {
+        "path": "M950 500C950 748.5 748.5 950 500 950S50 748.5 50 500 251.5 50 500 50 950 251.5 950 500Z",
+        "width": 1000
+      },
+      "search": [
+        "dot"
+      ]
+    },
+    {
+      "uid": "9c4446a6ef17615d830d28be36e07ca8",
+      "css": "ja-imagens_continuar-a-ler",
+      "code": 59394,
+      "src": "custom_icons",
+      "selected": false,
+      "svg": {
+        "path": "",
+        "width": 1000
+      },
+      "search": [
+        "ja-imagens_continuar-a-ler"
+      ]
+    },
+    {
+      "uid": "dd0221af25914d467114b69c3dcb7a9c",
+      "css": "ja-imagens_facebook",
+      "code": 59395,
+      "src": "custom_icons",
+      "selected": false,
+      "svg": {
+        "path": "",
+        "width": 1000
+      },
+      "search": [
+        "ja-imagens_facebook"
+      ]
+    },
+    {
+      "uid": "5fe64df4e72b9f770574884fe71ef1dd",
+      "css": "ja-imagens_instagram",
+      "code": 59396,
+      "src": "custom_icons",
+      "selected": false,
+      "svg": {
+        "path": "",
+        "width": 1000
+      },
+      "search": [
+        "ja-imagens_instagram"
+      ]
+    },
+    {
+      "uid": "81ab631184d481df74b546740c4c0e27",
+      "css": "ja-imagens_logo",
+      "code": 59397,
+      "src": "custom_icons",
+      "selected": false,
+      "svg": {
+        "path": "",
+        "width": 5203
+      },
+      "search": [
+        "ja-imagens_logo"
+      ]
+    },
+    {
+      "uid": "2579cc5e8cf2a2984ecdec55aafef6f1",
+      "css": "ja-imagens_menu-sandwich",
+      "code": 59398,
+      "src": "custom_icons",
+      "selected": false,
+      "svg": {
+        "path": "",
+        "width": 1636
+      },
+      "search": [
+        "ja-imagens_menu-sandwich"
+      ]
+    },
+    {
+      "uid": "2efcbc8b7746022bcf36143a55e365c5",
+      "css": "ja-imagens_scroll",
+      "code": 59399,
+      "src": "custom_icons",
+      "selected": false,
+      "svg": {
+        "path": "",
+        "width": 1000
+      },
+      "search": [
+        "ja-imagens_scroll"
+      ]
+    },
+    {
+      "uid": "9ba22fe051569a597a4b97ab33cafae3",
+      "css": "ja-imagens_x-geral",
+      "code": 59400,
+      "src": "custom_icons",
+      "selected": false,
+      "svg": {
+        "path": "",
+        "width": 1000
+      },
+      "search": [
+        "ja-imagens_x-geral"
+      ]
+    },
+    {
+      "uid": "1891c3df56d8104ec8d604735c8d3e1f",
+      "css": "ja-imagens_x-smartphone",
+      "code": 59401,
+      "src": "custom_icons",
+      "selected": false,
+      "svg": {
+        "path": "",
+        "width": 1000
+      },
+      "search": [
+        "ja-imagens_x-smartphone"
+      ]
+    },
+    {
+      "uid": "63122d405417663c9231ad677712baec",
+      "css": "ja-imagens_continuar-a-ler",
+      "code": 59402,
+      "src": "custom_icons",
+      "selected": false,
+      "svg": {
+        "path": "",
+        "width": 1000
+      },
+      "search": [
+        "ja-imagens_continuar-a-ler"
+      ]
+    }
+  ]
+}

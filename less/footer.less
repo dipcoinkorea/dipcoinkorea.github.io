@@ -39,9 +39,19 @@
     width: @footer-link-size;
     height: @footer-link-size;
     background-color: #aaa;
+    position: relative;
     
     &:nth-child(2n) {
         background-color: #ccc;
+    }
+
+    &:before {
+        font-size: 13px;
+        color: #fff;
+        position: absolute;
+        left: 50%;
+        top: 50%;
+        transform: translate(-50%, -50%);
     }
 }
 

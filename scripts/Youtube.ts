@@ -6,7 +6,7 @@ module Youtube {
     var Container = document.getElementById("medias");
 
     var _BuildVideo = (ytItem: any) => {
-        console.log(ytItem);
+
         var 
             iframeParent = document.createElement("div"),
             iframe: HTMLIFrameElement = document.createElement("iframe"),

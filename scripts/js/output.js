@@ -365,7 +365,6 @@ var Youtube;
 (function (Youtube) {
     var Container = document.getElementById("medias");
     var _BuildVideo = function (ytItem) {
-        console.log(ytItem);
         var iframeParent = document.createElement("div"), iframe = document.createElement("iframe"), container = document.createElement("article"), header = document.createElement("header"), title = document.createElement("h3"), dateElt = document.createElement("time"), description = document.createElement("div");
         container.classList.add("youtube-item");
         container.classList.add("post-item");
