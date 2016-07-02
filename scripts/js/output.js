@@ -132,6 +132,30 @@ var Hero = (function () {
     };
     return Hero;
 }());
+String.prototype["replaceAt"] = function (index, character) {
+    return;
+};
+var PageTitle;
+(function (PageTitle) {
+    var Title = "DIPCOIN";
+    var curChar = 0;
+    var starflag = true;
+    document.title = "*" + Title + "*";
+    var capitalize = function () {
+        Title = "DIPCOIN";
+        var trailchar = starflag ? "*" : "\u00A0";
+        var char = Title.charAt(curChar);
+        char = char.toLowerCase();
+        Title[curChar] = char;
+        document.title = trailchar + Title.substr(0, curChar) + char + Title.substr(curChar + 1, curChar + Title.length) + trailchar;
+        if (curChar == Title.length - 1)
+            curChar = 0;
+        else
+            curChar++;
+        starflag = !starflag;
+    };
+    setInterval(capitalize, 300);
+})(PageTitle || (PageTitle = {}));
 /// <reference path="lib/definitions-custom.ts"/>
 /// <reference path="./Hero.ts"/>
 var Playground;
@@ -194,15 +218,17 @@ var Soundcloud;
             var iframeParent = document.createElement("div");
             iframeParent.innerHTML = response.html;
             iframe = iframeParent.firstChild;
+            var trackDate = moment(track.created_at);
             container.classList.add("soundcloud-track");
             container.classList.add("post-item");
+            container.setAttribute("data-date", trackDate.format("YYYYMM") + ("0" + trackDate.format("d")).slice(-2));
             title.classList.add("soundcloud-track-title");
             title.classList.add("post-item-title");
             title.innerHTML = track.title;
             header.appendChild(title);
             dateElt.classList.add("soundcloud-track-date");
             dateElt.classList.add("post-item-date");
-            dateElt.innerHTML = moment(track.created_at).format("dd MMM Do YYYY");
+            dateElt.innerHTML = trackDate.format("dd MMM Do YYYY");
             header.appendChild(dateElt);
             header.classList.add("soundclound-track-header");
             header.classList.add("post-item-header");
@@ -212,6 +238,23 @@ var Soundcloud;
             description.innerHTML = track.description;
             container.appendChild(description);
             TrackContainer.appendChild(container);
+            var datedElts = Array.prototype.slice.call(TrackContainer.querySelectorAll("*[data-date]"));
+            var l = datedElts.length;
+            while (l--) {
+                datedElts[l].parentElement.removeChild(datedElts[l]);
+            }
+            datedElts.sort(function (a, b) {
+                var aValue = a.getAttribute("data-date");
+                var bValue = b.getAttribute("data-date");
+                if (aValue > bValue)
+                    return 1;
+                if (aValue < bValue)
+                    return -1;
+                return 0;
+            });
+            for (var i = 0; i < datedElts.length; i++) {
+                TrackContainer.appendChild(datedElts[i]);
+            }
         };
         xhr.send(null);
     };
@@ -367,15 +410,17 @@ var Youtube;
     var Container = document.getElementById("medias");
     var _BuildVideo = function (ytItem) {
         var iframeParent = document.createElement("div"), iframe = document.createElement("iframe"), container = document.createElement("article"), header = document.createElement("header"), title = document.createElement("h3"), dateElt = document.createElement("time"), description = document.createElement("div");
+        var videoDate = moment(ytItem.snippet.publishedAt);
         container.classList.add("youtube-item");
         container.classList.add("post-item");
+        container.setAttribute("data-date", videoDate.format("YYYYMM") + ("0" + videoDate.format("d")).slice(-2));
         title.classList.add("youtube-item-title");
         title.classList.add("post-item-title");
         title.innerHTML = ytItem.snippet.title;
         header.appendChild(title);
         dateElt.classList.add("youtube-item-date");
         dateElt.classList.add("post-item-date");
-        dateElt.innerHTML = moment(ytItem.snippet.publishedAt).format("dd MMM Do YYYY");
+        dateElt.innerHTML = videoDate.format("dd MMM Do YYYY");
         header.appendChild(dateElt);
         header.classList.add("soundclound-track-header");
         header.classList.add("post-item-header");
@@ -399,6 +444,23 @@ var Youtube;
             var response = JSON.parse(o.target.responseText);
             for (var i = 0; i < response.items.length; i++) {
                 Container.appendChild(_BuildVideo(response.items[i]));
+            }
+            var datedElts = Array.prototype.slice.call(Container.querySelectorAll("*[data-date]"));
+            var l = datedElts.length;
+            while (l--) {
+                datedElts[l].parentElement.removeChild(datedElts[l]);
+            }
+            datedElts.sort(function (a, b) {
+                var aValue = a.getAttribute("data-date");
+                var bValue = b.getAttribute("data-date");
+                if (aValue > bValue)
+                    return 1;
+                if (aValue < bValue)
+                    return -1;
+                return 0;
+            });
+            for (var i = 0; i < datedElts.length; i++) {
+                Container.appendChild(datedElts[i]);
             }
         };
         xhr.send(null);

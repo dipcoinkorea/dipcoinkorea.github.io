@@ -24,8 +24,11 @@ module Soundcloud {
             iframeParent.innerHTML = response.html;
             iframe = <HTMLIFrameElement>iframeParent.firstChild;
 
+            var trackDate = moment(track.created_at);
+
             container.classList.add("soundcloud-track");
             container.classList.add("post-item");
+            container.setAttribute("data-date", trackDate.format("YYYYMM") + ("0" + trackDate.format("d")).slice(-2));
 
             title.classList.add("soundcloud-track-title");
             title.classList.add("post-item-title");
@@ -34,7 +37,7 @@ module Soundcloud {
 
             dateElt.classList.add("soundcloud-track-date");
             dateElt.classList.add("post-item-date");
-            dateElt.innerHTML = moment(track.created_at).format("dd MMM Do YYYY");
+            dateElt.innerHTML = trackDate.format("dd MMM Do YYYY");
             header.appendChild(dateElt);
 
             header.classList.add("soundclound-track-header");
@@ -48,6 +51,22 @@ module Soundcloud {
             container.appendChild(description);
 
             TrackContainer.appendChild(container);
+
+            var datedElts: HTMLElement[] = Array.prototype.slice.call(TrackContainer.querySelectorAll("*[data-date]"));
+            var l = datedElts.length;
+            while(l--) {
+                datedElts[l].parentElement.removeChild(datedElts[l]);
+            }
+            datedElts.sort((a, b) => {
+                var aValue = a.getAttribute("data-date");
+                var bValue = b.getAttribute("data-date");
+                if (aValue > bValue) return 1;
+                if (aValue < bValue) return -1;
+                return 0;
+            });
+            for(var i = 0; i < datedElts.length; i++){
+                TrackContainer.appendChild(datedElts[i]);
+            }
         };
 
         xhr.send(null);

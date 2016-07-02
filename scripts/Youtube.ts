@@ -16,8 +16,11 @@ module Youtube {
             dateElt = document.createElement("time"),
             description = document.createElement("div");
 
+        var videoDate = moment(ytItem.snippet.publishedAt);
+
         container.classList.add("youtube-item");
         container.classList.add("post-item");
+        container.setAttribute("data-date", videoDate.format("YYYYMM") + ("0" + videoDate.format("d")).slice(-2));
 
         title.classList.add("youtube-item-title");
         title.classList.add("post-item-title");
@@ -26,7 +29,7 @@ module Youtube {
 
         dateElt.classList.add("youtube-item-date");
         dateElt.classList.add("post-item-date");
-        dateElt.innerHTML = moment(ytItem.snippet.publishedAt).format("dd MMM Do YYYY");
+        dateElt.innerHTML = videoDate.format("dd MMM Do YYYY");
         header.appendChild(dateElt);
 
         header.classList.add("soundclound-track-header");
@@ -57,6 +60,23 @@ module Youtube {
             for(var i = 0; i < response.items.length; i++) {
                 Container.appendChild(_BuildVideo(response.items[i]));
             }
+            
+            var datedElts: HTMLElement[] = Array.prototype.slice.call(Container.querySelectorAll("*[data-date]"));
+            var l = datedElts.length;
+            while(l--) {
+                datedElts[l].parentElement.removeChild(datedElts[l]);
+            }
+            datedElts.sort((a, b) => {
+                var aValue = a.getAttribute("data-date");
+                var bValue = b.getAttribute("data-date");
+                if (aValue > bValue) return 1;
+                if (aValue < bValue) return -1;
+                return 0;
+            });
+            for(var i = 0; i < datedElts.length; i++){
+                Container.appendChild(datedElts[i]);
+            }
+
         };
         xhr.send(null);
     }
