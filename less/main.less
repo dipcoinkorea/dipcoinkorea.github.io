@@ -43,6 +43,12 @@ img, video, audio {
     bottom: 0;
     width: 300px;
     top: @header-height + 4;
+    transform: translateX(100%);
+    transition: all 0.2s;
+
+    &.open {
+        transform: translateX(0);
+    }
 }
 
 #tlkio {

@@ -37,6 +37,11 @@ audio {
   bottom: 0;
   width: 300px;
   top: 84px;
+  transform: translateX(100%);
+  transition: all 0.2s;
+}
+.chat.open {
+  transform: translateX(0);
 }
 #tlkio {
   height: 100%;

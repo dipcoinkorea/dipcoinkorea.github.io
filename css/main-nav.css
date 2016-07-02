@@ -25,6 +25,12 @@
 .main-nav-link.active {
   text-decoration: underline;
 }
+.chat-toggler {
+  position: absolute;
+  right: 0;
+  top: 0;
+  bottom: 0;
+}
 @media screen and (min-width: 601px) and (max-width: 1280px) {
   .main-nav {
     margin: 0 40px;
