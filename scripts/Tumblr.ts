@@ -69,8 +69,11 @@ module Tumblr {
         postHeader.classList.add("tumblr-post-header");
         container.appendChild(postHeader);
 
+        var momentDate = moment(post.date);
+        var dateStr = ("0" + momentDate.format("d")).slice(-2) + momentDate.format("MMYYYY");
+
         postDateElt.classList.add("tumblr-post-date");
-        postDateElt.innerHTML = moment(post.date).format("dd MMM Do YYYY");
+        postDateElt.innerHTML = dateStr;
         postHeader.appendChild(postDateElt);
         
         if(post.title) {

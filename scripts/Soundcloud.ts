@@ -37,7 +37,7 @@ module Soundcloud {
 
             dateElt.classList.add("soundcloud-track-date");
             dateElt.classList.add("post-item-date");
-            dateElt.innerHTML = trackDate.format("dd MMM Do YYYY");
+            dateElt.innerHTML = ("0" + trackDate.format("d")).slice(-2) + trackDate.format("MMYYYY");
             header.appendChild(dateElt);
 
             header.classList.add("soundclound-track-header");

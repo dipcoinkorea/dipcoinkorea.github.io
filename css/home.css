@@ -16,8 +16,8 @@
 }
 .home-section-title {
   padding: 0 10px;
-  font-family: 'bebasregular';
   margin-bottom: 40px;
+  font-size: 32px;
 }
 @media screen and (max-width: 1024px) {
   .home-section {

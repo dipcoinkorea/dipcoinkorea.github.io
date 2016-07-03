@@ -29,7 +29,7 @@ module Youtube {
 
         dateElt.classList.add("youtube-item-date");
         dateElt.classList.add("post-item-date");
-        dateElt.innerHTML = videoDate.format("dd MMM Do YYYY");
+        dateElt.innerHTML = ("0" + videoDate.format("d")).slice(-2) + videoDate.format("MMYYYY");
         header.appendChild(dateElt);
 
         header.classList.add("soundclound-track-header");

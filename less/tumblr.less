@@ -1,8 +1,21 @@
 @import "@variables.less";
 
 .tumblr-post {
-    padding: 0 (@width-gutter/2);
-    margin-bottom: @width-gutter * 2;
+    padding: 0 (@width-gutter/2) (@width-gutter * 5) (@width-gutter/2);
+    margin-bottom: @width-gutter * 5;
+    position: relative;
+
+    &:before {
+        content: "";
+        position: absolute;
+        bottom: 0;
+        left: 50%;
+        width: 20px;
+        height: 2px;
+        background-color: white;
+        margin-left: -10px;
+        transform: rotate(-45deg);
+    }
 }
 
 .tumblr-post-header {
@@ -12,7 +25,7 @@
 .tumblr-images {
     position: relative;
     height: 0;
-    padding-bottom: 71%;
+    padding-bottom: 65%;
     margin-bottom: @width-gutter;
 }
 

@@ -1,6 +1,18 @@
 .tumblr-post {
-  padding: 0 10px;
-  margin-bottom: 40px;
+  padding: 0 10px 100px 10px;
+  margin-bottom: 100px;
+  position: relative;
+}
+.tumblr-post:before {
+  content: "";
+  position: absolute;
+  bottom: 0;
+  left: 50%;
+  width: 20px;
+  height: 2px;
+  background-color: white;
+  margin-left: -10px;
+  transform: rotate(-45deg);
 }
 .tumblr-post-header {
   margin-bottom: 20px;
@@ -8,7 +20,7 @@
 .tumblr-images {
   position: relative;
   height: 0;
-  padding-bottom: 71%;
+  padding-bottom: 65%;
   margin-bottom: 20px;
 }
 .tumblr-images-slide {
