@@ -1,9 +1,23 @@
 @import "@variables.less";
 
 .post-item {
-    margin-bottom: @width-gutter * 2;
+    margin-bottom: @width-gutter * 5;
+    padding-bottom: @width-gutter * 5;
     margin-left: @width-gutter/2;
     margin-right: @width-gutter/2;
+    position: relative;
+
+    &:before {
+        content: "";
+        position: absolute;
+        bottom: 0;
+        left: 50%;
+        width: 20px;
+        height: 2px;
+        background-color: white;
+        margin-left: -10px;
+        transform: rotate(-45deg);
+    }
 }
 
 .post-item-header {

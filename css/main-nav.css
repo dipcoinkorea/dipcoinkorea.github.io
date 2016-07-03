@@ -12,6 +12,7 @@
   max-width: 1280px;
   margin: 0 auto;
   line-height: 80px;
+  padding-right: 50px;
 }
 .main-nav-link {
   color: #fff;
@@ -49,5 +50,9 @@
   .main-nav {
     margin: 0 20px;
     line-height: 26px;
+    padding-top: 10px;
+  }
+  .chat-toggler {
+    top: 10px;
   }
 }

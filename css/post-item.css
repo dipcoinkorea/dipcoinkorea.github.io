@@ -1,7 +1,20 @@
 .post-item {
-  margin-bottom: 40px;
+  margin-bottom: 100px;
+  padding-bottom: 100px;
   margin-left: 10px;
   margin-right: 10px;
+  position: relative;
+}
+.post-item:before {
+  content: "";
+  position: absolute;
+  bottom: 0;
+  left: 50%;
+  width: 20px;
+  height: 2px;
+  background-color: white;
+  margin-left: -10px;
+  transform: rotate(-45deg);
 }
 .post-item-header {
   margin-bottom: 20px;
