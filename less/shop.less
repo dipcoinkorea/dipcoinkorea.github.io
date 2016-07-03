@@ -1,0 +1,120 @@
+@import "@variables.less";
+
+.shop {
+    .clearfix();
+    margin: 0 -(@width-gutter/2);
+}
+
+.product-item {
+    float: left;
+    width: 25%;
+    position: relative;
+}
+
+.product-item-figure {
+    position: relative;
+    height: 0;
+    margin: 0 (@width-gutter/2);
+    padding-bottom: 100%;
+
+    img {
+        position: absolute;
+        left: 50%;
+        top: 50%;
+        transform: translate(-50%, -50%);
+        max-width: 100%;
+        max-height: 100%;
+    }
+}
+
+.product-item-link {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: @width-gutter/2;
+    right: @width-gutter/2;
+    z-index: 10;
+    background-image: url('data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7');
+
+    &:hover + .product-item-content {
+        opacity: 1;
+    } 
+} 
+
+.product-item-content {
+    position: absolute;
+    bottom: 0;
+    left: @width-gutter/2;
+    right: @width-gutter/2;
+    background-color: rgba(255,255,255,0.8);
+    padding: (@width-gutter/2) (@width-gutter/2);
+    opacity: 0;
+    transition: opacity 0.3s;
+    font-family: @title-font;
+    letter-spacing: 1px;
+    color: #000;
+}
+
+.product-detail {
+    .clearfix();
+}
+
+.product-detail-title {
+    font-family: @title-font;
+    font-size: 52px;
+    letter-spacing: 2px;
+    margin-bottom: @width-gutter;
+}
+
+.product-detail-figure {
+    float: left;
+    width: 100%/3;
+}
+
+.product-detail-content {
+    width: (100%/3) * 2;
+    float: left;
+}
+
+.product-detail-price {
+    font-family: @title-font;
+    font-size: 22px;
+    padding-bottom: @width-gutter;
+    margin: 0 0 @width-gutter @width-gutter;
+    border-bottom: 1px solid #fff;
+}
+
+.product-detail-text {
+    margin-left: @width-gutter;
+    margin-bottom: @width-gutter;
+    font-size: 12px;
+}
+
+.product-detail-buy {
+    color: #fff;
+    font-family: @title-font;
+    text-decoration: none;
+    font-size: 32px;
+    display: inline-block;
+    margin: -8px 0 @width-gutter @width-gutter;
+    border-bottom: 1px solid transparent;
+
+    .no-touchevents &:hover {
+        border-bottom: 1px solid #fff;
+    }
+}
+
+//Tablet + Laptop
+@media screen and (min-width: (@mobile-width + 1)) and (max-width: @website-maxwidth) {
+    .product-item {
+        width: 50%;
+    }
+}
+
+
+//Mobile
+@media screen and (max-width: @mobile-width) {
+    .product-item {
+        width: 100%;
+    }
+}
