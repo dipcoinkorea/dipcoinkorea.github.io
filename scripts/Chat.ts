@@ -1,9 +1,8 @@
 module Chat {
-    var _Container = document.getElementById("chat");
-    export var Toggle = () => {
-        if(_Container.classList.contains("open"))
-            _Container.classList.remove("open");
+    document.getElementById("chat-toggler").addEventListener("click", () => {
+        if(document.body.classList.contains("chat-open"))
+            document.body.classList.remove("chat-open");
         else
-            _Container.classList.add("open");
-    }
+            document.body.classList.add("chat-open");
+    });
 }

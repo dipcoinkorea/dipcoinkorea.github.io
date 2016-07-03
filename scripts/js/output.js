@@ -13,6 +13,15 @@ var Background;
     };
     setInterval(changeColor, 5000);
 })(Background || (Background = {}));
+var Chat;
+(function (Chat) {
+    document.getElementById("chat-toggler").addEventListener("click", function () {
+        if (document.body.classList.contains("chat-open"))
+            document.body.classList.remove("chat-open");
+        else
+            document.body.classList.add("chat-open");
+    });
+})(Chat || (Chat = {}));
 var Helpers;
 (function (Helpers) {
     Helpers.GetRectangle = function (elt) {
