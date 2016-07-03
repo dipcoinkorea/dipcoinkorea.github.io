@@ -35,6 +35,20 @@
     right: 0;
     top: 0;
     bottom: 0;
+
+    .chat-toggler-opened {
+        display: none;
+    }
+
+    .chat-open & {
+        .chat-toggler-opened {
+            display: block;
+        }
+
+        .chat-toggler-closed {
+            display: none;
+        }
+    }
 }
 
 //Tablet + Laptop
