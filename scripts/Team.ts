@@ -67,3 +67,27 @@ module Team {
     }
 
 }
+
+module About {
+    const TUMBLR_API_KEY = "osyd8e6IT3O9iaWaflEbzjzaqou01t0fd6YoM8IhgXmuOP8stx";
+    const TUMBLR_ID: string = "dipcoin";
+
+    var Container = document.getElementById("about");
+
+    export var ContentReady = (o) => {
+        console.log("ContentReady", o);
+    }
+
+    var _GetContent = () => {
+        var xhr = new XMLHttpRequest();
+        xhr.open("get", "https://api.tumblr.com/v2/blog/" + TUMBLR_ID + ".tumblr.com/posts?api_key=" + TUMBLR_API_KEY + "&jsonp=About.ContentReady", true);
+        xhr.onload = (o: any) => {
+            var response = JSON.parse(o.target.responseText);
+            console.log(response);
+        };
+        xhr.send(null);
+    }
+
+    if(Container)
+        _GetContent();
+}

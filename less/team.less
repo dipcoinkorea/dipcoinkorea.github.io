@@ -19,8 +19,8 @@
 
 .team-member-figure {
     position: absolute;
-    width: 50%;
-    height: 50%;
+    width: 70%;
+    height: 70%;
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
@@ -71,4 +71,19 @@
     bottom: 0;
     z-index: 10;
     background-image: url('data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7');
+}
+
+//Tablet + Laptop
+@media screen and (min-width: (@mobile-width + 1)) and (max-width: @website-maxwidth) {
+    .team-member {
+        width: 100%/3;
+    }
+}
+
+
+//Mobile
+@media screen and (max-width: @mobile-width) {
+    .team-member {
+        width: 100%;
+    }
 }

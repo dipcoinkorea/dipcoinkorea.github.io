@@ -55,4 +55,7 @@
   .chat-toggler {
     top: 10px;
   }
+  .main-nav-link {
+    font-size: 18px;
+  }
 }
