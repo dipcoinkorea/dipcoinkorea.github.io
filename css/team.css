@@ -1,0 +1,49 @@
+.team {
+  *zoom: 1;
+  margin: 0 -10px;
+}
+.team:before,
+.team:after {
+  content: "";
+  display: table;
+}
+.team:after {
+  clear: both;
+}
+.team-member {
+  float: left;
+  width: 25%;
+}
+.team-member-inner {
+  position: relative;
+  height: 0;
+  padding-bottom: 100%;
+  margin: 0 10px;
+}
+.team-member-figure {
+  position: absolute;
+  width: 50%;
+  height: 50%;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  border-radius: 100%;
+  overflow: hidden;
+}
+.team-member-image {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  max-width: 200%;
+}
+.team-member-title {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  text-align: center;
+  font-family: 'bebasregular';
+  font-size: 14px;
+  letter-spacing: 2px;
+}

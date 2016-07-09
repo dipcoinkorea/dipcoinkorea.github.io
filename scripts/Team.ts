@@ -10,6 +10,7 @@ module Team {
             var member = Members[i];
             var membercontainer = document.createElement("article");
             var inner = document.createElement("div");
+            var figure = document.createElement("figure");
             var image = document.createElement("img");
             var title = document.createElement("h2");
             var link = document.createElement("a");
@@ -18,9 +19,12 @@ module Team {
             inner.classList.add("team-member-inner");
             membercontainer.appendChild(inner);
 
+            figure.classList.add("team-member-figure");
+            inner.appendChild(figure);
+
             image.src = member.image;
             image.classList.add("team-member-image");
-            inner.appendChild(image);
+            figure.appendChild(image);
 
             title.classList.add("team-member-title");
             title.innerHTML = member.name;

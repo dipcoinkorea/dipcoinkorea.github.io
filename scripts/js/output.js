@@ -11,7 +11,7 @@ var Background;
         }
         curColorIndex = curColorIndex == colors.length ? 0 : curColorIndex + 1;
     };
-    setInterval(changeColor, 5000);
+    setInterval(changeColor, 8000);
 })(Background || (Background = {}));
 var Chat;
 (function (Chat) {
@@ -248,7 +248,6 @@ var Shop;
     var Container = document.getElementById("shop");
     var _ProductID = getQueryVariable("productID");
     var _RenderItem = function (item) {
-        console.log(item);
         var title = item["gsx$title"]["$t"];
         var imageurl = item["gsx$imageurl"]["$t"];
         var price = item["gsx$price"]["$t"];
@@ -424,15 +423,18 @@ var Team;
             var member = Members[i];
             var membercontainer = document.createElement("article");
             var inner = document.createElement("div");
+            var figure = document.createElement("figure");
             var image = document.createElement("img");
             var title = document.createElement("h2");
             var link = document.createElement("a");
             membercontainer.classList.add("team-member");
             inner.classList.add("team-member-inner");
             membercontainer.appendChild(inner);
+            figure.classList.add("team-member-figure");
+            inner.appendChild(figure);
             image.src = member.image;
             image.classList.add("team-member-image");
-            inner.appendChild(image);
+            figure.appendChild(image);
             title.classList.add("team-member-title");
             title.innerHTML = member.name;
             inner.appendChild(title);

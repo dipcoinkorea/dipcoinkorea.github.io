@@ -16,7 +16,6 @@ module Shop {
     var _ProductID = getQueryVariable("productID");
 
     var _RenderItem = (item: Object) => {
-        console.log(item);
         var title = item["gsx$title"]["$t"];
         var imageurl = item["gsx$imageurl"]["$t"];
         var price = item["gsx$price"]["$t"];
@@ -91,7 +90,7 @@ module Shop {
         priceElt.classList.add("product-detail-price");
         priceElt.innerHTML = price;
         productDetailElt.appendChild(priceElt);
-
+        
         descriptionElt.classList.add("product-detail-text");
         descriptionElt.innerHTML = description;
         productDetailElt.appendChild(descriptionElt);

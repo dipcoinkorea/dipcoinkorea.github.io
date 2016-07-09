@@ -12,5 +12,5 @@ module Background {
         curColorIndex = curColorIndex == colors.length ? 0 : curColorIndex + 1;        
     }
 
-    setInterval(changeColor, 5000);
+    setInterval(changeColor, 8000);
 }
