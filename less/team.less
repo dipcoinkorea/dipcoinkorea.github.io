@@ -28,6 +28,22 @@
     overflow: hidden;
 }
 
+.team-member-figure-mask {
+    position: absolute;
+    z-index: 20;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: @background-color;
+    display: none;
+    opacity: 0.7;
+
+    .team-member-inner:hover & {
+        display: block;
+    }
+}
+
 .team-member-image {
     position: absolute;
     top: 50%;
@@ -45,4 +61,14 @@
     font-family: @title-font;
     font-size: 14px;
     letter-spacing: 2px;
+}
+
+.team-member-link {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    z-index: 10;
+    background-image: url('data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7');
 }

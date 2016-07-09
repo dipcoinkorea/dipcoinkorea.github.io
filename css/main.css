@@ -43,6 +43,13 @@ audio {
 .chat-open .chat {
   transform: translateX(0);
 }
+.panel-text {
+  margin-bottom: 20px;
+}
+.panel-image {
+  text-align: center;
+  margin-bottom: 20px;
+}
 #tlkio {
   height: 100%;
 }

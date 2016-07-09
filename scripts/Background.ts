@@ -1,9 +1,9 @@
 module Background {
-    var backgroundElts = document.getElementsByClassName("js-background");
-    var colors = ["#aa19a5", "#edc159", "#000"];
+    var colors = ["#edc159", "#000", "#aa19a5"];
     var curColorIndex = 0;
 
     var changeColor = () => {
+        var backgroundElts = document.getElementsByClassName("js-background");
         var l = backgroundElts.length;
         while(l--) {
             var backgroundElt = <HTMLElement>backgroundElts[l];

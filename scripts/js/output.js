@@ -1,9 +1,9 @@
 var Background;
 (function (Background) {
-    var backgroundElts = document.getElementsByClassName("js-background");
-    var colors = ["#aa19a5", "#edc159", "#000"];
+    var colors = ["#edc159", "#000", "#aa19a5"];
     var curColorIndex = 0;
     var changeColor = function () {
+        var backgroundElts = document.getElementsByClassName("js-background");
         var l = backgroundElts.length;
         while (l--) {
             var backgroundElt = backgroundElts[l];
@@ -27,16 +27,36 @@ var Chat;
 })(Chat || (Chat = {}));
 var Dipcoinpest;
 (function (Dipcoinpest) {
-    var documentID = "1kav9gojBNlzluMCBWlCR64PYvYg4uwNqaEAvxJI_6MA";
+    var spreadsheetID = "1ODf3ISXr7go9rLnMmSO4ukraS7M_h9Fpz7fE6gcsD70";
     var Container = document.getElementById("dipcoinpest");
-    var _RenderContent = function () {
-    };
     var _GetItems = function () {
         var xhr = new XMLHttpRequest();
-        xhr.open("get", "https://docs.google.com/feeds/list/" + documentID + "/od6/public/values?alt=json", true);
+        xhr.open("get", "https://spreadsheets.google.com/feeds/list/" + spreadsheetID + "/od6/public/values?alt=json", true);
         xhr.onload = function (o) {
             var response = JSON.parse(o.target.responseText);
-            console.log(response);
+            for (var i = 0; i < response.feed.entry.length; i++) {
+                var item = response.feed.entry[i];
+                var type = item["gsx$type"]["$t"];
+                var content = item["gsx$content"]["$t"];
+                switch (type.toLowerCase()) {
+                    case "text":
+                        var textpanel = document.createElement("div");
+                        textpanel.classList.add("panel-text");
+                        content = content.replace("\n", "<br />");
+                        content = content.replace("\r", "<br />");
+                        textpanel.innerHTML = content;
+                        Container.appendChild(textpanel);
+                        break;
+                    case "image":
+                        var imagepanel = document.createElement("figure");
+                        var image = document.createElement("img");
+                        image.src = content;
+                        imagepanel.classList.add("panel-image");
+                        imagepanel.appendChild(image);
+                        Container.appendChild(imagepanel);
+                        break;
+                }
+            }
         };
         xhr.send(null);
     };
@@ -446,11 +466,15 @@ var Team;
             var image = document.createElement("img");
             var title = document.createElement("h2");
             var link = document.createElement("a");
+            var mask = document.createElement("div");
             membercontainer.classList.add("team-member");
             inner.classList.add("team-member-inner");
             membercontainer.appendChild(inner);
             figure.classList.add("team-member-figure");
             inner.appendChild(figure);
+            mask.classList.add("team-member-figure-mask");
+            mask.classList.add("js-background");
+            figure.appendChild(mask);
             image.src = member.image;
             image.classList.add("team-member-image");
             figure.appendChild(image);
@@ -458,7 +482,8 @@ var Team;
             title.innerHTML = member.name;
             inner.appendChild(title);
             link.classList.add("team-member-link");
-            link.href = "javascript:void(0)";
+            link.target = "_blank";
+            link.href = member.link;
             inner.appendChild(link);
             Container.appendChild(membercontainer);
         }
@@ -473,7 +498,7 @@ var Team;
                 Members.push({
                     name: entry["gsx$name"]["$t"],
                     image: entry["gsx$image"]["$t"],
-                    description: entry["gsx$description"]["$t"]
+                    link: entry["gsx$link"]["$t"]
                 });
             }
             _RenderMembers();

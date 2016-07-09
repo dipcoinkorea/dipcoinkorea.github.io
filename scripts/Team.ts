@@ -1,7 +1,7 @@
 module Team {
 
    
-    var Members: {name: string, image: string, description: string}[] = [];
+    var Members: {name: string, image: string, link: string}[] = [];
     var spreadsheetID = "1YpRhnIA-vHrQe0X2quecOhoZHYRI3sk4L2m6UdULOvA";
     var Container = document.getElementById("team");
 
@@ -14,6 +14,7 @@ module Team {
             var image = document.createElement("img");
             var title = document.createElement("h2");
             var link = document.createElement("a");
+            var mask = document.createElement("div");
 
             membercontainer.classList.add("team-member");
             inner.classList.add("team-member-inner");
@@ -21,6 +22,10 @@ module Team {
 
             figure.classList.add("team-member-figure");
             inner.appendChild(figure);
+
+            mask.classList.add("team-member-figure-mask");
+            mask.classList.add("js-background");
+            figure.appendChild(mask);
 
             image.src = member.image;
             image.classList.add("team-member-image");
@@ -31,7 +36,8 @@ module Team {
             inner.appendChild(title);
 
             link.classList.add("team-member-link");
-            link.href = "javascript:void(0)";
+            link.target = "_blank";
+            link.href = member.link;
             inner.appendChild(link);
 
             Container.appendChild(membercontainer);
@@ -48,7 +54,7 @@ module Team {
                 Members.push({
                     name : entry["gsx$name"]["$t"],
                     image: entry["gsx$image"]["$t"],
-                    description: entry["gsx$description"]["$t"]
+                    link: entry["gsx$link"]["$t"]
                 });
             }
             _RenderMembers();
