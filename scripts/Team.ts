@@ -75,17 +75,24 @@ module About {
     var Container = document.getElementById("about");
 
     export var ContentReady = (o) => {
-        console.log("ContentReady", o);
+        Container.innerHTML = o.response.blog.description;
     }
 
+    //jsonp.
     var _GetContent = () => {
-        var xhr = new XMLHttpRequest();
-        xhr.open("get", "https://api.tumblr.com/v2/blog/" + TUMBLR_ID + ".tumblr.com/posts?api_key=" + TUMBLR_API_KEY + "&jsonp=About.ContentReady", true);
-        xhr.onload = (o: any) => {
-            var response = JSON.parse(o.target.responseText);
-            console.log(response);
-        };
-        xhr.send(null);
+        var scriptTag = document.getElementById("tumblr-data");
+        if(scriptTag != null) {
+            scriptTag.parentElement.removeChild(scriptTag);
+        }
+        
+        var reqUrl = "https://api.tumblr.com/v2/blog/" + TUMBLR_ID + ".tumblr.com/info?api_key=" + TUMBLR_API_KEY;
+        
+        scriptTag = document.createElement("script");
+        scriptTag.id = "tumblr-data";
+        scriptTag.setAttribute("type", "text/javascript");
+        scriptTag.setAttribute("src", reqUrl + "&callback=About.ContentReady");
+        
+        document.body.appendChild(scriptTag);
     }
 
     if(Container)
