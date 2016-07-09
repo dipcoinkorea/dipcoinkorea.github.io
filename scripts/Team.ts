@@ -38,11 +38,6 @@ module Team {
         }
     }
 
-    var _RenderDetail = (item: Object) => {
-        var container = document.createElement("article");
-        return  container;
-    }
-
     var _GetItems = () => {
         var xhr = new XMLHttpRequest();
         xhr.open("get", "https://spreadsheets.google.com/feeds/list/" + spreadsheetID + "/od6/public/values?alt=json", true);
@@ -57,18 +52,6 @@ module Team {
                 });
             }
             _RenderMembers();
-        };
-        xhr.send(null);
-    }
-
-    var _GetItem = () => {
-        var xhr = new XMLHttpRequest();
-        xhr.open("get", "https://spreadsheets.google.com/feeds/list/" + spreadsheetID + "/od6/public/values?alt=json", true);
-        xhr.onload = (o: any) => {
-            var response = JSON.parse(o.target.responseText);
-            for(var i = 0; i < response.feed.entry.length; i++) {
-                
-            }
         };
         xhr.send(null);
     }

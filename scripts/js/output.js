@@ -25,6 +25,25 @@ var Chat;
         });
     }
 })(Chat || (Chat = {}));
+var Dipcoinpest;
+(function (Dipcoinpest) {
+    var documentID = "1kav9gojBNlzluMCBWlCR64PYvYg4uwNqaEAvxJI_6MA";
+    var Container = document.getElementById("dipcoinpest");
+    var _RenderContent = function () {
+    };
+    var _GetItems = function () {
+        var xhr = new XMLHttpRequest();
+        xhr.open("get", "https://docs.google.com/feeds/list/" + documentID + "/od6/public/values?alt=json", true);
+        xhr.onload = function (o) {
+            var response = JSON.parse(o.target.responseText);
+            console.log(response);
+        };
+        xhr.send(null);
+    };
+    if (Container) {
+        _GetItems();
+    }
+})(Dipcoinpest || (Dipcoinpest = {}));
 var Helpers;
 (function (Helpers) {
     Helpers.GetRectangle = function (elt) {
@@ -444,10 +463,6 @@ var Team;
             Container.appendChild(membercontainer);
         }
     };
-    var _RenderDetail = function (item) {
-        var container = document.createElement("article");
-        return container;
-    };
     var _GetItems = function () {
         var xhr = new XMLHttpRequest();
         xhr.open("get", "https://spreadsheets.google.com/feeds/list/" + spreadsheetID + "/od6/public/values?alt=json", true);
@@ -462,16 +477,6 @@ var Team;
                 });
             }
             _RenderMembers();
-        };
-        xhr.send(null);
-    };
-    var _GetItem = function () {
-        var xhr = new XMLHttpRequest();
-        xhr.open("get", "https://spreadsheets.google.com/feeds/list/" + spreadsheetID + "/od6/public/values?alt=json", true);
-        xhr.onload = function (o) {
-            var response = JSON.parse(o.target.responseText);
-            for (var i = 0; i < response.feed.entry.length; i++) {
-            }
         };
         xhr.send(null);
     };
