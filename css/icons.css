@@ -14,3 +14,9 @@
 .icon-insta:before {
   content: 'i';
 }
+.icon-next:before {
+  content: 'n';
+}
+.icon-previous:before {
+  content: 'p';
+}

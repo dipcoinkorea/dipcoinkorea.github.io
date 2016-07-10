@@ -7,6 +7,15 @@
   background-image: url('../assets/face.png');
   background-position: center center;
   background-repeat: no-repeat;
+  background-size: cover;
   display: block;
+  width: 161px;
+  height: 209px;
   border: 30px solid transparent;
+}
+@media screen and (max-width: 600px) {
+  .hero {
+    width: 80.5px;
+    height: 104.5px;
+  }
 }

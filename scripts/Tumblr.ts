@@ -155,11 +155,15 @@ module Tumblr {
                 nextLink.setAttribute("href", "javascript:void(0)");
                 nextLink.classList.add("tumblr-slider-link");
                 nextLink.classList.add("next");
+                nextLink.classList.add("icon");
+                nextLink.classList.add("icon-next");
                 photoParent.appendChild(nextLink);
 
                 prevLink.setAttribute("href", "javascript:void(0)");
                 prevLink.classList.add("tumblr-slider-link");
                 prevLink.classList.add("previous");
+                prevLink.classList.add("icon");
+                prevLink.classList.add("icon-previous");
                 photoParent.appendChild(prevLink);
 
                 var slider = new Wallop(photoParent);

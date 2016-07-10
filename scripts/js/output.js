@@ -120,8 +120,6 @@ var Direction;
 })(Direction || (Direction = {}));
 /// <reference path="lib/definitions-custom.ts"/>
 /// <reference path="Helpers.ts"/>
-var HERO_WIDTH = 161;
-var HERO_HEIGHT = 209;
 var BASESPEED = 0.3;
 var Hero = (function () {
     function Hero(container) {
@@ -154,8 +152,6 @@ var Hero = (function () {
         this.Elt = document.createElement("a");
         this.Elt.setAttribute("href", "home.html");
         this.Elt.classList.add("hero");
-        this.Elt.style.width = HERO_WIDTH + "px";
-        this.Elt.style.height = HERO_HEIGHT + "px";
         container.appendChild(this.Elt);
         this.Position = { x: 50, y: 50 };
         this._Direction = [Direction.Top, Direction.Left];
@@ -639,10 +635,14 @@ var Tumblr;
                 nextLink.setAttribute("href", "javascript:void(0)");
                 nextLink.classList.add("tumblr-slider-link");
                 nextLink.classList.add("next");
+                nextLink.classList.add("icon");
+                nextLink.classList.add("icon-next");
                 photoParent.appendChild(nextLink);
                 prevLink.setAttribute("href", "javascript:void(0)");
                 prevLink.classList.add("tumblr-slider-link");
                 prevLink.classList.add("previous");
+                prevLink.classList.add("icon");
+                prevLink.classList.add("icon-previous");
                 photoParent.appendChild(prevLink);
                 var slider = new Wallop(photoParent);
                 slider.carousel = true;

@@ -45,12 +45,34 @@
   z-index: 200;
   width: 50%;
   background-image: url('data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7');
+  display: block;
+  opacity: 0;
+  transition: opacity 0.3s;
+}
+.tumblr-slider-link:hover {
+  opacity: 1;
+}
+.touchevents .tumblr-slider-link {
+  opacity: 1;
+}
+.tumblr-slider-link:before {
+  color: #fff;
+  font-size: 42px;
+  position: absolute;
+  top: 50%;
+  margin-top: -21px;
 }
 .tumblr-slider-link.next {
   right: 0;
 }
+.tumblr-slider-link.next:before {
+  right: 20px;
+}
 .tumblr-slider-link.previous {
   left: 0;
+}
+.tumblr-slider-link.previous:before {
+  left: 20px;
 }
 .tumblr-post-date {
   font-size: 13px;

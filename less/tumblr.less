@@ -52,13 +52,40 @@
     z-index: 200;
     width: 50%;
     background-image: url('data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7');
+    display: block;
+    opacity: 0;
+    transition: opacity 0.3s;
+
+    &:hover {
+        opacity: 1;
+    }
+
+    .touchevents & {
+        opacity: 1;
+    }
+
+    &:before {
+        color: #fff;
+        font-size: 42px;
+        position: absolute;
+        top: 50%;
+        margin-top: -21px;
+    }
 
     &.next {
         right: 0;
+
+        &:before {
+            right: @width-gutter;
+        }
     }
 
     &.previous {
         left: 0;
+
+        &:before {
+            left: @width-gutter;
+        }
     }
 }
 

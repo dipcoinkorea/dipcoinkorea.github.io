@@ -9,20 +9,32 @@
     {
       "uid": "8e04c98c8f5ca0a035776e3001ad2638",
       "css": "facebook",
-      "code": 59392,
+      "code": 102,
       "src": "fontawesome"
     },
     {
       "uid": "dff942d95eb1b3f1be140e622d0a7c74",
       "css": "soundcloud",
-      "code": 59393,
+      "code": 115,
       "src": "fontawesome"
     },
     {
       "uid": "4c1ef492f1d2c39a2250ae457cee2a6e",
       "css": "instagram",
-      "code": 59394,
+      "code": 105,
       "src": "fontawesome"
+    },
+    {
+      "uid": "004882ab2d5c418c5b2060e80596279b",
+      "css": "right-open-big",
+      "code": 110,
+      "src": "entypo"
+    },
+    {
+      "uid": "884cfc3e6e2d456dd2a2ca0dbb9e6337",
+      "css": "left-open-big",
+      "code": 112,
+      "src": "entypo"
     },
     {
       "uid": "d70de04c0b5882b865b459c334cc1ad3",

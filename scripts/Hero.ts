@@ -1,8 +1,6 @@
 /// <reference path="lib/definitions-custom.ts"/>
 /// <reference path="Helpers.ts"/>
 
-const HERO_WIDTH: number = 161;
-const HERO_HEIGHT: number = 209;
 const BASESPEED: number = 0.3; 
 
 class Hero  {
@@ -18,8 +16,6 @@ class Hero  {
             
             this.Elt.setAttribute("href", "home.html");
             this.Elt.classList.add("hero")
-            this.Elt.style.width = HERO_WIDTH + "px";
-            this.Elt.style.height = HERO_HEIGHT + "px";
             container.appendChild(this.Elt);
             this.Position = {x : 50, y: 50};
             this._Direction = [Direction.Top, Direction.Left];
