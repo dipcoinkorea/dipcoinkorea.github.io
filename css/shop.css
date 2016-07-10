@@ -54,6 +54,9 @@
   letter-spacing: 1px;
   color: #000;
 }
+.touchevents .product-item-content {
+  opacity: 1;
+}
 .product-detail {
   *zoom: 1;
 }
