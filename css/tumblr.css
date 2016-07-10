@@ -23,6 +23,9 @@
   padding-bottom: 65%;
   margin-bottom: 20px;
 }
+.tumblr-audio iframe {
+  max-width: 100%;
+}
 .tumblr-images-slide {
   position: absolute;
   top: 0;
