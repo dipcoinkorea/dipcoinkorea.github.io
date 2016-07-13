@@ -184,8 +184,9 @@ var Logo;
     var logoElt = document.querySelector(".footer-logo");
     var imgElt = document.querySelector("img.logo-img");
     var images = [
-        "assets/banana.gif", "assets/flyingcat.gif", "assets/kayne.gif", "assets/pukingdog.gif",
-        "assets/catdonut.gif", "assets/nicecat.gif", "assets/spongebob.gif"
+        "assets/banana.gif", "assets/kayne.gif", "assets/pukingdog.gif",
+        ,
+        "assets/nicecat.gif", "assets/spongebob.gif"
     ];
     var loader = document.createElement("img");
     loader.style.position = "fixed";
