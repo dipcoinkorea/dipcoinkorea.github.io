@@ -6,7 +6,6 @@
   background-color: #aa19a5;
   height: 80px;
   z-index: 9999;
-  border-bottom: 4px solid #fff;
 }
 .main-nav {
   max-width: 1280px;
@@ -21,10 +20,11 @@
   text-decoration: none;
   display: inline-block;
   margin-right: 20px;
+  transition: color 0.2s;
 }
 .main-nav-link:hover,
 .main-nav-link.active {
-  text-decoration: underline;
+  color: #ffef00;
 }
 .chat-toggler {
   position: absolute;

@@ -29,7 +29,6 @@
     bottom: 0;
     white-space: nowrap;
     font-size: 0;
-    width: 3*@footer-link-size;
     left: 50%;
     margin-left: -(3*@footer-link-size)/2;
 }
@@ -38,16 +37,12 @@
     display: inline-block;
     width: @footer-link-size;
     height: @footer-link-size;
-    background-color: #aaa;
     position: relative;
-    
-    &:nth-child(2n) {
-        background-color: #ccc;
-    }
+    color: #fff;
+    .rollover();
 
     &:before {
         font-size: 13px;
-        color: #fff;
         position: absolute;
         left: 50%;
         top: 50%;
@@ -58,11 +53,13 @@
 .footer-logo {
     position: absolute;
     left: 50%;
-    bottom: 30px;
-    width: 116px;
+    bottom: 10px;
+    width: 117px;
     margin-left: -58px;
+    z-index: 0;
     
     img {
         max-width: 100%;
+        padding-left: 12px;
     }
 }

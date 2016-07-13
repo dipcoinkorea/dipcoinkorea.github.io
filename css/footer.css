@@ -22,7 +22,6 @@
   bottom: 0;
   white-space: nowrap;
   font-size: 0;
-  width: 90px;
   left: 50%;
   margin-left: -45px;
 }
@@ -30,15 +29,16 @@
   display: inline-block;
   width: 30px;
   height: 30px;
-  background-color: #aaa;
   position: relative;
+  color: #fff;
+  transition: color 0.2s;
 }
-.footer-link:nth-child(2n) {
-  background-color: #ccc;
+.footer-link:hover,
+.footer-link.active {
+  color: #ffef00;
 }
 .footer-link:before {
   font-size: 13px;
-  color: #fff;
   position: absolute;
   left: 50%;
   top: 50%;
@@ -47,10 +47,12 @@
 .footer-logo {
   position: absolute;
   left: 50%;
-  bottom: 30px;
-  width: 116px;
+  bottom: 10px;
+  width: 117px;
   margin-left: -58px;
+  z-index: 0;
 }
 .footer-logo img {
   max-width: 100%;
+  padding-left: 12px;
 }

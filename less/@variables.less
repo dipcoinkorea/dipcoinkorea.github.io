@@ -8,6 +8,7 @@
 
 @font-color: #fff;
 @background-color: #aa19a5;
+@rollover-color: #ffef00;
 
 @title-font: 'bebasregular';
 @font-size-small: 13px;
@@ -29,4 +30,12 @@
     }
 
     *zoom: 1;
+}
+
+.rollover() {
+	transition: color 0.2s;
+
+	&:hover, &.active {
+		color: @rollover-color;
+	}
 }

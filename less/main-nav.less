@@ -8,7 +8,6 @@
     background-color: @background-color;
     height: @header-height;
     z-index: 9999;
-    border-bottom: 4px solid #fff;
 }
 
 .main-nav {
@@ -25,10 +24,7 @@
     text-decoration: none;
     display: inline-block;
     margin-right: @width-gutter;
-    
-    &:hover, &.active {
-        text-decoration: underline;    
-    }
+    .rollover();
 }
 
 .chat-toggler {

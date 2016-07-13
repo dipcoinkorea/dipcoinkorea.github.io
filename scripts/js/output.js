@@ -1,18 +1,3 @@
-var Background;
-(function (Background) {
-    var colors = ["#edc159", "#000", "#aa19a5"];
-    var curColorIndex = 0;
-    var changeColor = function () {
-        var backgroundElts = document.getElementsByClassName("js-background");
-        var l = backgroundElts.length;
-        while (l--) {
-            var backgroundElt = backgroundElts[l];
-            backgroundElt.style.backgroundColor = colors[curColorIndex];
-        }
-        curColorIndex = curColorIndex == colors.length ? 0 : curColorIndex + 1;
-    };
-    setInterval(changeColor, 8000);
-})(Background || (Background = {}));
 var Chat;
 (function (Chat) {
     var toggler = document.getElementById("chat-toggler");
@@ -731,7 +716,7 @@ var Youtube;
 })(Youtube || (Youtube = {}));
 var Home;
 (function (Home) {
-    var _TumblrContainer = document.getElementById("tumblr");
+    var _TumblrContainer = document.getElementById("news");
     if (_TumblrContainer)
         Tumblr.Init(_TumblrContainer);
 })(Home || (Home = {}));
