@@ -152,18 +152,21 @@ module Tumblr {
             container.appendChild(photoParent);
             
             if(photoElts.length > 1) {
+                var arrowImg = document.createElement("img");
+                arrowImg.src = "assets/arrow.svg";
+
                 nextLink.setAttribute("href", "javascript:void(0)");
                 nextLink.classList.add("tumblr-slider-link");
                 nextLink.classList.add("next");
-                nextLink.classList.add("icon");
-                nextLink.classList.add("icon-next");
+                nextLink.appendChild(arrowImg);
                 photoParent.appendChild(nextLink);
+
+
 
                 prevLink.setAttribute("href", "javascript:void(0)");
                 prevLink.classList.add("tumblr-slider-link");
                 prevLink.classList.add("previous");
-                prevLink.classList.add("icon");
-                prevLink.classList.add("icon-previous");
+                prevLink.appendChild(arrowImg.cloneNode());
                 photoParent.appendChild(prevLink);
 
                 var slider = new Wallop(photoParent);

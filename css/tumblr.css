@@ -2,17 +2,7 @@
   padding: 0 10px 100px 10px;
   margin-bottom: 100px;
   position: relative;
-}
-.tumblr-post:before {
-  content: "";
-  position: absolute;
-  bottom: 0;
-  left: 50%;
-  width: 20px;
-  height: 2px;
-  background-color: white;
-  margin-left: -10px;
-  transform: rotate(-45deg);
+  border-bottom: 1px solid #fff;
 }
 .tumblr-post-header {
   margin-bottom: 20px;
@@ -37,9 +27,9 @@
   position: absolute;
   max-width: 100%;
   max-height: 100%;
-  left: 50%;
+  left: 0;
   top: 50%;
-  transform: translate(-50%, -50%);
+  transform: translate(0, -50%);
 }
 .tumblr-slider-link {
   position: absolute;
@@ -59,23 +49,28 @@
   opacity: 1;
 }
 .tumblr-slider-link:before {
-  color: #fff;
-  font-size: 42px;
   position: absolute;
   top: 50%;
-  margin-top: -21px;
+}
+.tumblr-slider-link img {
+  width: 30px;
+  height: 30px;
+  position: absolute;
+  top: 50%;
+  margin-top: -15px;
 }
 .tumblr-slider-link.next {
   right: 0;
 }
-.tumblr-slider-link.next:before {
-  right: 20px;
+.tumblr-slider-link.next img {
+  transform: rotate(180deg);
+  right: 80px;
 }
 .tumblr-slider-link.previous {
   left: 0;
 }
-.tumblr-slider-link.previous:before {
-  left: 20px;
+.tumblr-slider-link.previous img {
+  left: 80px;
 }
 .tumblr-post-date {
   font-size: 13px;

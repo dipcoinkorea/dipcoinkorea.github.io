@@ -4,7 +4,7 @@ const SNDC_CLIENTID = '164c25c5bfda5b9c34ae8f71d114dee9';
 
 
 module Soundcloud {
-    var TrackContainer = document.getElementById("medias");
+    var Container: HTMLElement = null;
 
     var _BuildTrackEmbed = (track: any) => {
         var 
@@ -50,9 +50,9 @@ module Soundcloud {
             description.innerHTML = track.description;
             container.appendChild(description);
 
-            TrackContainer.appendChild(container);
+            Container.appendChild(container);
 
-            var datedElts: HTMLElement[] = Array.prototype.slice.call(TrackContainer.querySelectorAll("*[data-date]"));
+            var datedElts: HTMLElement[] = Array.prototype.slice.call(Container.querySelectorAll("*[data-date]"));
             var l = datedElts.length;
             while(l--) {
                 datedElts[l].parentElement.removeChild(datedElts[l]);
@@ -65,7 +65,7 @@ module Soundcloud {
                 return 0;
             });
             for(var i = 0; i < datedElts.length; i++){
-                TrackContainer.appendChild(datedElts[i]);
+                Container.appendChild(datedElts[i]);
             }
         };
 
@@ -91,8 +91,9 @@ module Soundcloud {
         xhr.send(null);
     }
 
-
-    if(TrackContainer)
+    export var Init = (container: HTMLElement) => {
+        Container = container;
         _GetPosts();
+    }
 
 }

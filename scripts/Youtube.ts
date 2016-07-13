@@ -3,7 +3,7 @@ const YOUTUBE_CHANNEL_ID = "UCdA_uKncEZusQ-SsfEYbtmA";
 
 module Youtube {
 
-    var Container = document.getElementById("medias");
+    var Container: HTMLElement = null;
 
     var _BuildVideo = (ytItem: any) => {
 
@@ -80,7 +80,10 @@ module Youtube {
         };
         xhr.send(null);
     }
-    
-    if(Container)
+
+    export var Init = (container: HTMLElement) => {
+        Container = container;
         _GetPosts();
+    }
+        
 }

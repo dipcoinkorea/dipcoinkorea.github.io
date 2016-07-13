@@ -5,7 +5,8 @@ body {
   position: relative;
   background-color: #aa19a5;
   color: #fff;
-  font-family: 'Open Sans', sans-serif;
+  font-family: 'Source Sans Pro', sans-serif;
+  line-height: 1.4em;
 }
 img,
 video,

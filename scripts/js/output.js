@@ -367,7 +367,7 @@ var SNDC_USERID = '200666760';
 var SNDC_CLIENTID = '164c25c5bfda5b9c34ae8f71d114dee9';
 var Soundcloud;
 (function (Soundcloud) {
-    var TrackContainer = document.getElementById("medias");
+    var Container = null;
     var _BuildTrackEmbed = function (track) {
         var iframe = null, container = document.createElement("article"), header = document.createElement("header"), title = document.createElement("h3"), dateElt = document.createElement("time"), description = document.createElement("div");
         var xhr = new XMLHttpRequest();
@@ -396,8 +396,8 @@ var Soundcloud;
             description.classList.add("soundclound-track-description");
             description.innerHTML = track.description;
             container.appendChild(description);
-            TrackContainer.appendChild(container);
-            var datedElts = Array.prototype.slice.call(TrackContainer.querySelectorAll("*[data-date]"));
+            Container.appendChild(container);
+            var datedElts = Array.prototype.slice.call(Container.querySelectorAll("*[data-date]"));
             var l = datedElts.length;
             while (l--) {
                 datedElts[l].parentElement.removeChild(datedElts[l]);
@@ -412,7 +412,7 @@ var Soundcloud;
                 return 0;
             });
             for (var i = 0; i < datedElts.length; i++) {
-                TrackContainer.appendChild(datedElts[i]);
+                Container.appendChild(datedElts[i]);
             }
         };
         xhr.send(null);
@@ -430,8 +430,10 @@ var Soundcloud;
         xhr.onload = Soundcloud.PostsLoaded;
         xhr.send(null);
     };
-    if (TrackContainer)
+    Soundcloud.Init = function (container) {
+        Container = container;
         _GetPosts();
+    };
 })(Soundcloud || (Soundcloud = {}));
 var Team;
 (function (Team) {
@@ -617,17 +619,17 @@ var Tumblr;
             photoParent.classList.add("tumblr-images");
             container.appendChild(photoParent);
             if (photoElts.length > 1) {
+                var arrowImg = document.createElement("img");
+                arrowImg.src = "assets/arrow.svg";
                 nextLink.setAttribute("href", "javascript:void(0)");
                 nextLink.classList.add("tumblr-slider-link");
                 nextLink.classList.add("next");
-                nextLink.classList.add("icon");
-                nextLink.classList.add("icon-next");
+                nextLink.appendChild(arrowImg);
                 photoParent.appendChild(nextLink);
                 prevLink.setAttribute("href", "javascript:void(0)");
                 prevLink.classList.add("tumblr-slider-link");
                 prevLink.classList.add("previous");
-                prevLink.classList.add("icon");
-                prevLink.classList.add("icon-previous");
+                prevLink.appendChild(arrowImg.cloneNode());
                 photoParent.appendChild(prevLink);
                 var slider = new Wallop(photoParent);
                 slider.carousel = true;
@@ -653,7 +655,7 @@ var YOUTUBE_API_KEY = "AIzaSyCai9IP1ePCF4Kr0l7B3fK3MIOGHyaq5zk";
 var YOUTUBE_CHANNEL_ID = "UCdA_uKncEZusQ-SsfEYbtmA";
 var Youtube;
 (function (Youtube) {
-    var Container = document.getElementById("medias");
+    var Container = null;
     var _BuildVideo = function (ytItem) {
         var iframeParent = document.createElement("div"), iframe = document.createElement("iframe"), container = document.createElement("article"), header = document.createElement("header"), title = document.createElement("h3"), dateElt = document.createElement("time"), description = document.createElement("div");
         var videoDate = moment(ytItem.snippet.publishedAt);
@@ -711,12 +713,13 @@ var Youtube;
         };
         xhr.send(null);
     };
-    if (Container)
+    Youtube.Init = function (container) {
+        Container = container;
         _GetPosts();
+    };
 })(Youtube || (Youtube = {}));
 var Home;
 (function (Home) {
-    var _TumblrContainer = document.getElementById("news");
-    if (_TumblrContainer)
-        Tumblr.Init(_TumblrContainer);
+    var Container = document.getElementById("news");
+    Tumblr.Init(Container);
 })(Home || (Home = {}));

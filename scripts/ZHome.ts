@@ -1,7 +1,9 @@
 module Home {
     var
-        _TumblrContainer = document.getElementById("news");
+        Container = document.getElementById("news");
     
-    if(_TumblrContainer)
-        Tumblr.Init(_TumblrContainer);
+    
+    Tumblr.Init(Container);
+    //Youtube.Init(Container);
+    //Soundcloud.Init(Container);
 }
