@@ -201,6 +201,7 @@ var Logo;
         imageLoadedCount++;
         loadNextImage();
     });
+    var timeout = null;
     var changeImage = function () {
         imageDisplayedIndex = imageDisplayedIndex == (images.length - 1) ? 0 : (imageDisplayedIndex + 1);
         imgElt.src = images[imageDisplayedIndex];

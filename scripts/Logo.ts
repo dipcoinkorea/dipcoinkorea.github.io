@@ -24,6 +24,7 @@ module Logo {
         loadNextImage();
     });
 
+    var timeout = null;
     var changeImage = () => {
         imageDisplayedIndex = imageDisplayedIndex == (images.length-1) ? 0 : (imageDisplayedIndex+1);
         imgElt.src = images[imageDisplayedIndex];
