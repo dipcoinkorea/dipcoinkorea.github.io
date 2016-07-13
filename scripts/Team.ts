@@ -58,6 +58,10 @@ module Team {
                 });
             }
             _RenderMembers();
+
+            //About content
+            document.getElementById("about").innerHTML = response.feed.entry[0]["gsx$maintext"]["$t"];
+            
         };
         xhr.send(null);
     }
@@ -66,35 +70,4 @@ module Team {
         _GetItems();
     }
 
-}
-
-module About {
-    const TUMBLR_API_KEY = "osyd8e6IT3O9iaWaflEbzjzaqou01t0fd6YoM8IhgXmuOP8stx";
-    const TUMBLR_ID: string = "dipcoin";
-
-    var Container = document.getElementById("about");
-
-    export var ContentReady = (o) => {
-        Container.innerHTML = o.response.blog.description;
-    }
-
-    //jsonp.
-    var _GetContent = () => {
-        var scriptTag = document.getElementById("tumblr-data");
-        if(scriptTag != null) {
-            scriptTag.parentElement.removeChild(scriptTag);
-        }
-        
-        var reqUrl = "https://api.tumblr.com/v2/blog/" + TUMBLR_ID + ".tumblr.com/info?api_key=" + TUMBLR_API_KEY;
-        
-        scriptTag = document.createElement("script");
-        scriptTag.id = "tumblr-data";
-        scriptTag.setAttribute("type", "text/javascript");
-        scriptTag.setAttribute("src", reqUrl + "&callback=About.ContentReady");
-        
-        document.body.appendChild(scriptTag);
-    }
-
-    if(Container)
-        _GetContent();
 }

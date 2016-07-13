@@ -179,6 +179,31 @@ var Hero = (function () {
     };
     return Hero;
 }());
+var Logo;
+(function (Logo) {
+    var logoElt = document.querySelector(".footer-logo");
+    var imgElt = document.querySelector("img.logo-img");
+    var images = ["assets/kayne.gif", "assets/pukingdog.gif", "assets/spongebob.gif"];
+    var loader = document.createElement("img");
+    loader.style.position = "fixed";
+    loader.style.left = "-3000px";
+    var imageLoadedCount = 0;
+    var imageDisplayedIndex = images.length - 1;
+    var loadNextImage = function () {
+        if (imageLoadedCount == images.length)
+            return;
+        loader.src = images[imageLoadedCount];
+    };
+    loader.addEventListener("load", function () {
+        imageLoadedCount++;
+        loadNextImage();
+    });
+    var changeImage = function () {
+        imageDisplayedIndex = imageDisplayedIndex == (images.length - 1) ? 0 : (imageDisplayedIndex + 1);
+        imgElt.src = images[imageDisplayedIndex];
+    };
+    logoElt.addEventListener("mouseenter", changeImage);
+})(Logo || (Logo = {}));
 String.prototype["replaceAt"] = function (index, character) {
     return;
 };
@@ -485,6 +510,8 @@ var Team;
                 });
             }
             _RenderMembers();
+            //About content
+            document.getElementById("about").innerHTML = response.feed.entry[0]["gsx$maintext"]["$t"];
         };
         xhr.send(null);
     };
@@ -492,30 +519,6 @@ var Team;
         _GetItems();
     }
 })(Team || (Team = {}));
-var About;
-(function (About) {
-    var TUMBLR_API_KEY = "osyd8e6IT3O9iaWaflEbzjzaqou01t0fd6YoM8IhgXmuOP8stx";
-    var TUMBLR_ID = "dipcoin";
-    var Container = document.getElementById("about");
-    About.ContentReady = function (o) {
-        Container.innerHTML = o.response.blog.description;
-    };
-    //jsonp.
-    var _GetContent = function () {
-        var scriptTag = document.getElementById("tumblr-data");
-        if (scriptTag != null) {
-            scriptTag.parentElement.removeChild(scriptTag);
-        }
-        var reqUrl = "https://api.tumblr.com/v2/blog/" + TUMBLR_ID + ".tumblr.com/info?api_key=" + TUMBLR_API_KEY;
-        scriptTag = document.createElement("script");
-        scriptTag.id = "tumblr-data";
-        scriptTag.setAttribute("type", "text/javascript");
-        scriptTag.setAttribute("src", reqUrl + "&callback=About.ContentReady");
-        document.body.appendChild(scriptTag);
-    };
-    if (Container)
-        _GetContent();
-})(About || (About = {}));
 var TUMBLR_API_KEY = "osyd8e6IT3O9iaWaflEbzjzaqou01t0fd6YoM8IhgXmuOP8stx";
 var TUMBLR_ID = "dipcoin";
 var POST_PER_PAGE = 10;
@@ -722,7 +725,9 @@ var Youtube;
 var Home;
 (function (Home) {
     var Container = document.getElementById("news");
-    Tumblr.Init(Container);
-    Youtube.Init(Container);
-    Soundcloud.Init(Container);
+    if (Container) {
+        Tumblr.Init(Container);
+        Youtube.Init(Container);
+        Soundcloud.Init(Container);
+    }
 })(Home || (Home = {}));
