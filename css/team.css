@@ -1,6 +1,6 @@
 .team {
   *zoom: 1;
-  margin: 0 -10px;
+  margin: 0 -10px 150px;
 }
 .team:before,
 .team:after {
