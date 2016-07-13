@@ -64,13 +64,15 @@ module Tumblr {
             postDateElt = document.createElement("time"),
             postTextContent = document.createElement("div");
         
+
+        var momentDate = moment(post.date);
+        var dateStr = ("0" + momentDate.format("d")).slice(-2) + momentDate.format("MMYYYY");
+
+        container.setAttribute("data-date", momentDate.format("YYYYMM") + ("0" + momentDate.format("d")).slice(-2));
         container.classList.add("tumblr-post");
         
         postHeader.classList.add("tumblr-post-header");
         container.appendChild(postHeader);
-
-        var momentDate = moment(post.date);
-        var dateStr = ("0" + momentDate.format("d")).slice(-2) + momentDate.format("MMYYYY");
 
         postDateElt.classList.add("tumblr-post-date");
         postDateElt.innerHTML = dateStr;

@@ -60,8 +60,8 @@ module Soundcloud {
             datedElts.sort((a, b) => {
                 var aValue = a.getAttribute("data-date");
                 var bValue = b.getAttribute("data-date");
-                if (aValue > bValue) return 1;
-                if (aValue < bValue) return -1;
+                if (aValue < bValue) return 1;
+                if (aValue > bValue) return -1;
                 return 0;
             });
             for(var i = 0; i < datedElts.length; i++){

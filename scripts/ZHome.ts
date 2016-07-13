@@ -4,6 +4,6 @@ module Home {
     
     
     Tumblr.Init(Container);
-    //Youtube.Init(Container);
-    //Soundcloud.Init(Container);
+    Youtube.Init(Container);
+    Soundcloud.Init(Container);
 }

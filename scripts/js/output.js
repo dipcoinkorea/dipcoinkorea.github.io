@@ -405,9 +405,9 @@ var Soundcloud;
             datedElts.sort(function (a, b) {
                 var aValue = a.getAttribute("data-date");
                 var bValue = b.getAttribute("data-date");
-                if (aValue > bValue)
-                    return 1;
                 if (aValue < bValue)
+                    return 1;
+                if (aValue > bValue)
                     return -1;
                 return 0;
             });
@@ -558,11 +558,12 @@ var Tumblr;
     };
     var _BuildPost = function (post) {
         var container = document.createElement("article"), postHeader = document.createElement("header"), postTitleELt = document.createElement("h3"), postDateElt = document.createElement("time"), postTextContent = document.createElement("div");
+        var momentDate = moment(post.date);
+        var dateStr = ("0" + momentDate.format("d")).slice(-2) + momentDate.format("MMYYYY");
+        container.setAttribute("data-date", momentDate.format("YYYYMM") + ("0" + momentDate.format("d")).slice(-2));
         container.classList.add("tumblr-post");
         postHeader.classList.add("tumblr-post-header");
         container.appendChild(postHeader);
-        var momentDate = moment(post.date);
-        var dateStr = ("0" + momentDate.format("d")).slice(-2) + momentDate.format("MMYYYY");
         postDateElt.classList.add("tumblr-post-date");
         postDateElt.innerHTML = dateStr;
         postHeader.appendChild(postDateElt);
@@ -701,9 +702,9 @@ var Youtube;
             datedElts.sort(function (a, b) {
                 var aValue = a.getAttribute("data-date");
                 var bValue = b.getAttribute("data-date");
-                if (aValue > bValue)
-                    return 1;
                 if (aValue < bValue)
+                    return 1;
+                if (aValue > bValue)
                     return -1;
                 return 0;
             });
@@ -722,4 +723,6 @@ var Home;
 (function (Home) {
     var Container = document.getElementById("news");
     Tumblr.Init(Container);
+    Youtube.Init(Container);
+    Soundcloud.Init(Container);
 })(Home || (Home = {}));
