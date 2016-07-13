@@ -56,3 +56,7 @@
   max-width: 100%;
   padding-left: 12px;
 }
+.footer-logo img[src='assets/banana.gif'] {
+  width: 80px;
+  margin: 0 0 22px 7px;
+}

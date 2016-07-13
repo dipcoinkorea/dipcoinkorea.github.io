@@ -183,7 +183,7 @@ var Logo;
 (function (Logo) {
     var logoElt = document.querySelector(".footer-logo");
     var imgElt = document.querySelector("img.logo-img");
-    var images = ["assets/kayne.gif", "assets/pukingdog.gif", "assets/spongebob.gif"];
+    var images = ["assets/banana.gif", "assets/kayne.gif", "assets/pukingdog.gif", "assets/spongebob.gif"];
     var loader = document.createElement("img");
     loader.style.position = "fixed";
     loader.style.left = "-3000px";
@@ -210,11 +210,11 @@ String.prototype["replaceAt"] = function (index, character) {
 var PageTitle;
 (function (PageTitle) {
     var Title = "DIPCOIN";
+    var inte;
     var curChar = 0;
     var starflag = true;
-    document.title = "*" + Title + "*";
-    var capitalize = function () {
-        Title = "DIPCOIN";
+    var maxloadingstars = 5;
+    var _capitalize = function () {
         var trailchar = starflag ? "*" : "\u00A0";
         var char = Title.charAt(curChar);
         char = char.toLowerCase();
@@ -226,7 +226,37 @@ var PageTitle;
             curChar++;
         starflag = !starflag;
     };
-    setInterval(capitalize, 300);
+    var _blink = function () {
+        var trailchar = starflag ? "*" : "\u00A0";
+        document.title = trailchar + Title + trailchar;
+        starflag = !starflag;
+    };
+    var _loading = function () {
+        if (curChar == maxloadingstars)
+            curChar = 0;
+        else
+            curChar++;
+        document.title = Title + Array(curChar).join("*");
+    };
+    var Loading = function () {
+        curChar = 0;
+        clearInterval(inte);
+        inte = setInterval(_loading, 250);
+    };
+    var Capitalize = function () {
+        document.title = "*" + Title + "*";
+        curChar = 0;
+        clearInterval(inte);
+        inte = setInterval(_capitalize, 300);
+    };
+    var Blink = function () {
+        clearInterval(inte);
+        inte = setInterval(_blink, 250);
+    };
+    Loading();
+    window.addEventListener("load", Blink);
+    if (document.readyState == "completed")
+        Blink();
 })(PageTitle || (PageTitle = {}));
 /// <reference path="lib/definitions-custom.ts"/>
 /// <reference path="./Hero.ts"/>
