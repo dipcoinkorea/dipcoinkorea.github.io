@@ -185,7 +185,6 @@ var Logo;
     var imgElt = document.querySelector("img.logo-img");
     var images = [
         "assets/banana.gif", "assets/kayne.gif", "assets/pukingdog.gif",
-        ,
         "assets/nicecat.gif", "assets/spongebob.gif"
     ];
     var loader = document.createElement("img");

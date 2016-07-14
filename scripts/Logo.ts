@@ -3,7 +3,7 @@ module Logo {
     var imgElt: HTMLImageElement = <HTMLImageElement>document.querySelector("img.logo-img");
     var images = [
         "assets/banana.gif", "assets/kayne.gif", "assets/pukingdog.gif", 
-        , "assets/nicecat.gif", "assets/spongebob.gif"
+        "assets/nicecat.gif", "assets/spongebob.gif"
     ];
     var loader = document.createElement("img");
     loader.style.position = "fixed";
