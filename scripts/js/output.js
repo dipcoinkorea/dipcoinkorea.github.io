@@ -751,6 +751,20 @@ var Youtube;
         };
         xhr.send(null);
     };
+    Youtube.GetLastVideo = function () {
+        var xhr = new XMLHttpRequest();
+        xhr.open("get", "https://www.googleapis.com/youtube/v3/search?key="
+            + YOUTUBE_API_KEY + "&channelId=" + YOUTUBE_CHANNEL_ID + "&part=snippet", true);
+        xhr.onload = function (o) {
+            var response = JSON.parse(o.target.responseText);
+            var iframe = document.getElementById("video-iframe");
+            if (!response.items || !response.items[0])
+                return;
+            iframe.src = "https://www.youtube.com/embed/" + response.items[0].id.videoId
+                + "?rel=0&autoplay=1&controls=0&rel=0&showinfo=0";
+        };
+        xhr.send(null);
+    };
     Youtube.Init = function (container) {
         Container = container;
         _GetPosts();
@@ -758,10 +772,12 @@ var Youtube;
 })(Youtube || (Youtube = {}));
 var Home;
 (function (Home) {
-    var Container = document.getElementById("news");
+    var VideoContainer = document.getElementById("video-background"), Container = document.getElementById("news");
     if (Container) {
         Tumblr.Init(Container);
         Youtube.Init(Container);
         Soundcloud.Init(Container);
     }
+    if (VideoContainer)
+        Youtube.GetLastVideo();
 })(Home || (Home = {}));

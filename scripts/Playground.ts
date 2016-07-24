@@ -2,6 +2,7 @@
 /// <reference path="./Hero.ts"/>
 
 module Playground {
+
     var Container = document.getElementById("playground");
 
     if (Container) {

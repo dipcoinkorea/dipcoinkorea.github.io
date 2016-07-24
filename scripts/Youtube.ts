@@ -81,6 +81,22 @@ module Youtube {
         xhr.send(null);
     }
 
+    export var GetLastVideo = () => {
+        var xhr = new XMLHttpRequest();
+        xhr.open("get", "https://www.googleapis.com/youtube/v3/search?key=" 
+        + YOUTUBE_API_KEY + "&channelId=" + YOUTUBE_CHANNEL_ID + "&part=snippet", true);
+        xhr.onload = (o: any) => {
+            var response = JSON.parse(o.target.responseText);
+            var iframe = <HTMLIFrameElement>document.getElementById("video-iframe");
+            if(!response.items || !response.items[0])
+                return;
+
+            iframe.src = "https://www.youtube.com/embed/" + response.items[0].id.videoId 
+            + "?rel=0&autoplay=1&controls=0&rel=0&showinfo=0";
+        };
+        xhr.send(null);
+    }
+
     export var Init = (container: HTMLElement) => {
         Container = container;
         _GetPosts();
