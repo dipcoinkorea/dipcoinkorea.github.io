@@ -1,5 +1,6 @@
 module Home {
     var
+        TumblrContainer = document.getElementById("tumblr-news"),
     	VideoContainer = document.getElementById("video-background"),
         Container = document.getElementById("news");
     
@@ -11,4 +12,7 @@ module Home {
 
     if(VideoContainer)
     	Youtube.GetLastVideo();
+
+    if(TumblrContainer)
+        Tumblr.Init(TumblrContainer);
 }
