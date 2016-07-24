@@ -185,8 +185,9 @@ var Logo;
     var imgElt = document.querySelector("img.logo-img");
     var images = [
         "assets/banana.gif", "assets/kayne.gif", "assets/pukingdog.gif",
-        "assets/nicecat.gif", "assets/spongebob.gif"
+        "assets/spongebob.gif", "assets/nicecat.gif"
     ];
+    //"assets/dancingguy.gif"
     var loader = document.createElement("img");
     loader.style.position = "fixed";
     loader.style.left = "-3000px";
@@ -515,7 +516,6 @@ var Team;
             figure.classList.add("team-member-figure");
             inner.appendChild(figure);
             mask.classList.add("team-member-figure-mask");
-            mask.classList.add("js-background");
             figure.appendChild(mask);
             image.src = member.image;
             image.classList.add("team-member-image");
@@ -527,6 +527,28 @@ var Team;
             link.target = "_blank";
             link.href = member.link;
             inner.appendChild(link);
+            link.addEventListener("mouseover", function (e) {
+                e.target.parentElement.classList.add("soundcloud-hover");
+            });
+            link.addEventListener("mouseout", function (e) {
+                e.target.parentElement.classList.remove("soundcloud-hover");
+            });
+            if (member.instagram) {
+                var instaLink = document.createElement("a");
+                link.classList.add("half");
+                instaLink.target = "_blank";
+                instaLink.href = member.instagram;
+                instaLink.classList.add("team-member-insta-link");
+                inner.appendChild(instaLink);
+                if (!member.link)
+                    instaLink.classList.add("full");
+                instaLink.addEventListener("mouseover", function (e) {
+                    e.target.parentElement.classList.add("instagram-hover");
+                });
+                instaLink.addEventListener("mouseout", function (e) {
+                    e.target.parentElement.classList.remove("instagram-hover");
+                });
+            }
             Container.appendChild(membercontainer);
         }
     };
@@ -540,7 +562,8 @@ var Team;
                 Members.push({
                     name: entry["gsx$name"]["$t"],
                     image: entry["gsx$image"]["$t"],
-                    link: entry["gsx$link"]["$t"]
+                    link: entry["gsx$link"]["$t"],
+                    instagram: entry["gsx$instagram"]["$t"]
                 });
             }
             _RenderMembers();

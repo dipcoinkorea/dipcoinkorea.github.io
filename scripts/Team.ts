@@ -1,7 +1,7 @@
 module Team {
 
    
-    var Members: {name: string, image: string, link: string}[] = [];
+    var Members: {name: string, image: string, link: string, instagram?: string}[] = [];
     var spreadsheetID = "1YpRhnIA-vHrQe0X2quecOhoZHYRI3sk4L2m6UdULOvA";
     var Container = document.getElementById("team");
 
@@ -24,7 +24,6 @@ module Team {
             inner.appendChild(figure);
 
             mask.classList.add("team-member-figure-mask");
-            mask.classList.add("js-background");
             figure.appendChild(mask);
 
             image.src = member.image;
@@ -40,6 +39,37 @@ module Team {
             link.href = member.link;
             inner.appendChild(link);
 
+            link.addEventListener("mouseover", (e) => {
+                (<HTMLElement>e.target).parentElement.classList.add("soundcloud-hover");
+            });
+
+            link.addEventListener("mouseout", (e) => {
+                (<HTMLElement>e.target).parentElement.classList.remove("soundcloud-hover");
+            });
+
+            if(member.instagram) {
+                var instaLink = <HTMLAnchorElement>document.createElement("a");
+
+                link.classList.add("half");
+
+                instaLink.target = "_blank";
+                instaLink.href = member.instagram;
+                instaLink.classList.add("team-member-insta-link");
+                inner.appendChild(instaLink);
+
+                if(!member.link)
+                    instaLink.classList.add("full");
+
+                instaLink.addEventListener("mouseover", (e) => {
+                    (<HTMLElement>e.target).parentElement.classList.add("instagram-hover");
+                });
+
+                instaLink.addEventListener("mouseout", (e) => {
+                    (<HTMLElement>e.target).parentElement.classList.remove("instagram-hover");
+                });
+            }
+
+
             Container.appendChild(membercontainer);
         }
     }
@@ -54,7 +84,8 @@ module Team {
                 Members.push({
                     name : entry["gsx$name"]["$t"],
                     image: entry["gsx$image"]["$t"],
-                    link: entry["gsx$link"]["$t"]
+                    link: entry["gsx$link"]["$t"],
+                    instagram: entry["gsx$instagram"]["$t"]
                 });
             }
             _RenderMembers();

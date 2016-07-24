@@ -42,6 +42,10 @@
     .team-member-inner:hover & {
         display: block;
     }
+
+    .soundcloud-hover & {
+        background-color: #ff3a00;
+    }
 }
 
 .team-member-image {
@@ -71,6 +75,59 @@
     bottom: 0;
     z-index: 10;
     background-image: url('data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7');
+    display: block;
+
+    &:before {
+        font-family: "icons";
+        content: "s";
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        color: #fff;
+        font-size: 22px;
+        z-index: 10;
+        display: none;
+        transform: translate(-50%, -50%);
+    }
+
+    &:hover:before {
+        display: block;
+    }
+
+    &.half {
+        right: 50%;
+    }
+}
+
+.team-member-insta-link {
+    position: absolute;
+    top: 0;
+    left: 50%;
+    right: 0;
+    bottom: 0;
+    z-index: 10;
+    background-image: url('data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7');
+
+    &.full {
+        left: 0;
+    }
+
+    &:before {
+        font-family: "icons";
+        content: "i";
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        color: #fff;
+        font-size: 22px;
+        z-index: 10;
+        display: none;
+        transform: translate(-50%, -50%);
+    }
+
+    &:hover:before {
+        display: block;
+    }
 }
 
 .about {
