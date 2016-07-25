@@ -74,3 +74,26 @@
         }
     }
 }
+
+.footer-contact {
+    position: fixed;
+    left: 0;
+    top: 88px;
+    white-space: pre-line;
+    font-size: 10px;
+    line-height: 10px;
+    text-align: center;
+    text-transform: uppercase;
+
+    a {
+        color: #fff;
+        text-decoration: none;
+    }
+}
+
+//Mobile
+@media screen and (max-width: @mobile-width) {
+    .footer-contact {
+        display: none;
+    }
+}

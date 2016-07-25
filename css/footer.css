@@ -65,3 +65,22 @@
   height: 80px;
   margin: 0 0 15px 20px;
 }
+.footer-contact {
+  position: fixed;
+  left: 0;
+  top: 88px;
+  white-space: pre-line;
+  font-size: 10px;
+  line-height: 10px;
+  text-align: center;
+  text-transform: uppercase;
+}
+.footer-contact a {
+  color: #fff;
+  text-decoration: none;
+}
+@media screen and (max-width: 600px) {
+  .footer-contact {
+    display: none;
+  }
+}
