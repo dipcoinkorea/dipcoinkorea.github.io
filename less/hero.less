@@ -6,15 +6,17 @@
     left: 50%;
     cursor: pointer;
     transform: translate3d(-50%, -50%, 0);
-    background-image: url('../assets/face.png');
-    background-position: center center;
+    background-image: url('../assets/face_rollover.png');
+    background-position: top center;
     background-repeat: no-repeat;
     background-size: cover;
     display: block;
     width: 161px;
     height: 209px;
-    
-    border: 30px solid transparent;
+
+    &:hover {
+        background-position: bottom center;
+    }
 }
 
 @media screen and (max-width: @mobile-width) {
