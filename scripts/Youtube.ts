@@ -20,7 +20,7 @@ module Youtube {
 
         container.classList.add("youtube-item");
         container.classList.add("post-item");
-        container.setAttribute("data-date", videoDate.format("YYYYMM") + ("0" + videoDate.format("d")).slice(-2));
+        container.setAttribute("data-date", videoDate.format("YYYYMM") + ("0" + videoDate.format("D")).slice(-2));
 
         title.classList.add("youtube-item-title");
         title.classList.add("post-item-title");
@@ -29,7 +29,7 @@ module Youtube {
 
         dateElt.classList.add("youtube-item-date");
         dateElt.classList.add("post-item-date");
-        dateElt.innerHTML = ("0" + videoDate.format("d")).slice(-2) + videoDate.format("MMYYYY");
+        dateElt.innerHTML = ("0" + videoDate.format("D")).slice(-2) + "/" + videoDate.format("MM/YYYY");
         header.appendChild(dateElt);
 
         header.classList.add("soundclound-track-header");

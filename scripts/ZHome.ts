@@ -5,14 +5,14 @@ module Home {
         Container = document.getElementById("news");
     
     if(Container) {
-	    Tumblr.Init(Container);
+        News.Init(Container);
+        Soundcloud.Init(Container);
 	    Youtube.Init(Container);
-	    Soundcloud.Init(Container);
     }
 
     if(VideoContainer)
     	Youtube.GetLastVideo();
 
-    if(TumblrContainer)
-        Tumblr.Init(TumblrContainer);
+    //if(TumblrContainer)
+    //    Tumblr.Init(TumblrContainer);
 }

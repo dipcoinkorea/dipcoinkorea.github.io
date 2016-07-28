@@ -212,30 +212,32 @@ var Logo;
 var News;
 (function (News) {
     var spreadsheetID = "1zkKS4RxRcag89Fuu1CFRd48q7GU19YQCqFt0eImkr0w";
-    var Container = document.getElementById("gsheet-news");
+    var _Container;
     var _RenderNews = function (entry) {
         var title = entry["gsx$title"]["$t"];
         var date = entry["gsx$date"]["$t"];
         var image = entry["gsx$image"]["$t"];
         var text = entry["gsx$text"]["$t"];
-        console.log(title, date, image, text);
         var article = document.createElement("article");
         var headerElt = document.createElement("header");
         var titleElt = document.createElement("h2");
         var dateElt = document.createElement("div");
         var textElt = document.createElement("div");
-        article.classList.add("tumblr-post");
-        headerElt.classList.add("tumblr-post-header");
+        var newsDate = moment(date, "MM-DD-YYYY");
+        article.classList.add("post-item");
+        article.setAttribute("data-date", newsDate.format("YYYYMM") + ("0" + newsDate.format("D")).slice(-2));
+        headerElt.classList.add("post-item-header");
         article.appendChild(headerElt);
-        if (date) {
-            dateElt.classList.add("tumblr-post-date");
-            dateElt.innerHTML = date;
-            headerElt.appendChild(dateElt);
-        }
         if (title) {
-            titleElt.classList.add("tumblr-post-title");
+            titleElt.classList.add("post-item-title");
             titleElt.innerHTML = title;
             headerElt.appendChild(titleElt);
+        }
+        if (date) {
+            dateElt.classList.add("post-item-date");
+            dateElt.innerHTML = ("0" + newsDate.format("D")).slice(-2) + "/" + newsDate.format("MM/YYYY");
+            ;
+            headerElt.appendChild(dateElt);
         }
         if (image) {
             var figureElt = document.createElement("figure");
@@ -250,7 +252,24 @@ var News;
             textElt.innerHTML = text;
             article.appendChild(textElt);
         }
-        Container.appendChild(article);
+        _Container.appendChild(article);
+        var datedElts = Array.prototype.slice.call(_Container.querySelectorAll("*[data-date]"));
+        var l = datedElts.length;
+        while (l--) {
+            datedElts[l].parentElement.removeChild(datedElts[l]);
+        }
+        datedElts.sort(function (a, b) {
+            var aValue = a.getAttribute("data-date");
+            var bValue = b.getAttribute("data-date");
+            if (aValue < bValue)
+                return 1;
+            if (aValue > bValue)
+                return -1;
+            return 0;
+        });
+        for (var i = 0; i < datedElts.length; i++) {
+            _Container.appendChild(datedElts[i]);
+        }
     };
     var _GetItems = function () {
         var xhr = new XMLHttpRequest();
@@ -264,8 +283,13 @@ var News;
         };
         xhr.send(null);
     };
-    if (Container) {
+    News.Init = function (container) {
+        _Container = container;
         _GetItems();
+    };
+    var newsContainer = document.getElementById("gsheet-news");
+    if (newsContainer) {
+        News.Init(newsContainer);
     }
 })(News || (News = {}));
 String.prototype["replaceAt"] = function (index, character) {
@@ -499,14 +523,14 @@ var Soundcloud;
             var trackDate = moment(track.created_at);
             container.classList.add("soundcloud-track");
             container.classList.add("post-item");
-            container.setAttribute("data-date", trackDate.format("YYYYMM") + ("0" + trackDate.format("d")).slice(-2));
+            container.setAttribute("data-date", trackDate.format("YYYYMM") + ("0" + trackDate.format("D")).slice(-2));
             title.classList.add("soundcloud-track-title");
             title.classList.add("post-item-title");
             title.innerHTML = track.title;
             header.appendChild(title);
             dateElt.classList.add("soundcloud-track-date");
             dateElt.classList.add("post-item-date");
-            dateElt.innerHTML = ("0" + trackDate.format("d")).slice(-2) + trackDate.format("MMYYYY");
+            dateElt.innerHTML = ("0" + trackDate.format("D")).slice(-2) + "/" + trackDate.format("MM/YYYY");
             header.appendChild(dateElt);
             header.classList.add("soundclound-track-header");
             header.classList.add("post-item-header");
@@ -678,8 +702,8 @@ var Tumblr;
     var _BuildPost = function (post) {
         var container = document.createElement("article"), postHeader = document.createElement("header"), postTitleELt = document.createElement("h3"), postDateElt = document.createElement("time"), postTextContent = document.createElement("div");
         var momentDate = moment(post.date);
-        var dateStr = ("0" + momentDate.format("d")).slice(-2) + momentDate.format("MMYYYY");
-        container.setAttribute("data-date", momentDate.format("YYYYMM") + ("0" + momentDate.format("d")).slice(-2));
+        var dateStr = ("0" + momentDate.format("D")).slice(-2) + momentDate.format("MMYYYY");
+        container.setAttribute("data-date", momentDate.format("YYYYMM") + ("0" + momentDate.format("D")).slice(-2));
         container.classList.add("tumblr-post");
         postHeader.classList.add("tumblr-post-header");
         container.appendChild(postHeader);
@@ -781,14 +805,14 @@ var Youtube;
         var videoDate = moment(ytItem.snippet.publishedAt);
         container.classList.add("youtube-item");
         container.classList.add("post-item");
-        container.setAttribute("data-date", videoDate.format("YYYYMM") + ("0" + videoDate.format("d")).slice(-2));
+        container.setAttribute("data-date", videoDate.format("YYYYMM") + ("0" + videoDate.format("D")).slice(-2));
         title.classList.add("youtube-item-title");
         title.classList.add("post-item-title");
         title.innerHTML = ytItem.snippet.title;
         header.appendChild(title);
         dateElt.classList.add("youtube-item-date");
         dateElt.classList.add("post-item-date");
-        dateElt.innerHTML = ("0" + videoDate.format("d")).slice(-2) + videoDate.format("MMYYYY");
+        dateElt.innerHTML = ("0" + videoDate.format("D")).slice(-2) + "/" + videoDate.format("MM/YYYY");
         header.appendChild(dateElt);
         header.classList.add("soundclound-track-header");
         header.classList.add("post-item-header");
@@ -856,12 +880,10 @@ var Home;
 (function (Home) {
     var TumblrContainer = document.getElementById("tumblr-news"), VideoContainer = document.getElementById("video-background"), Container = document.getElementById("news");
     if (Container) {
-        Tumblr.Init(Container);
-        Youtube.Init(Container);
+        News.Init(Container);
         Soundcloud.Init(Container);
+        Youtube.Init(Container);
     }
     if (VideoContainer)
         Youtube.GetLastVideo();
-    if (TumblrContainer)
-        Tumblr.Init(TumblrContainer);
 })(Home || (Home = {}));

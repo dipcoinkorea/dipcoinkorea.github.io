@@ -1,7 +1,7 @@
 module News {
 
     var spreadsheetID = "1zkKS4RxRcag89Fuu1CFRd48q7GU19YQCqFt0eImkr0w";
-    var Container = document.getElementById("gsheet-news");
+    var _Container: HTMLElement;
 
     var _RenderNews = (entry) => {
         
@@ -10,29 +10,30 @@ module News {
         var image = entry["gsx$image"]["$t"];
         var text = entry["gsx$text"]["$t"];
 
-        console.log(title, date, image, text);
-
         var article = document.createElement("article");
         var headerElt = document.createElement("header");
         var titleElt = document.createElement("h2");
         var dateElt = document.createElement("div");
         var textElt = document.createElement("div");
 
-        article.classList.add("tumblr-post");
+        var newsDate = moment(date, "MM-DD-YYYY");
 
-        headerElt.classList.add("tumblr-post-header");
+        article.classList.add("post-item");
+        article.setAttribute("data-date", newsDate.format("YYYYMM") + ("0" + newsDate.format("D")).slice(-2));
+
+        headerElt.classList.add("post-item-header");
         article.appendChild(headerElt);
 
-        if(date) {
-	        dateElt.classList.add("tumblr-post-date");
-	        dateElt.innerHTML = date;
-	        headerElt.appendChild(dateElt);
-        }
-
         if(title) {
-	        titleElt.classList.add("tumblr-post-title");
+	        titleElt.classList.add("post-item-title");
 	        titleElt.innerHTML = title;
 	        headerElt.appendChild(titleElt);
+        }
+
+        if(date) {
+            dateElt.classList.add("post-item-date");
+            dateElt.innerHTML = ("0" + newsDate.format("D")).slice(-2) + "/" + newsDate.format("MM/YYYY");;
+            headerElt.appendChild(dateElt);
         }
 
         if(image) {
@@ -52,10 +53,23 @@ module News {
         	article.appendChild(textElt);
         }
 
+        _Container.appendChild(article);
 
-
-
-        Container.appendChild(article);
+        var datedElts: HTMLElement[] = Array.prototype.slice.call(_Container.querySelectorAll("*[data-date]"));
+        var l = datedElts.length;
+        while(l--) {
+            datedElts[l].parentElement.removeChild(datedElts[l]);
+        }
+        datedElts.sort((a, b) => {
+            var aValue = a.getAttribute("data-date");
+            var bValue = b.getAttribute("data-date");
+            if (aValue < bValue) return 1;
+            if (aValue > bValue) return -1;
+            return 0;
+        });
+        for(var i = 0; i < datedElts.length; i++){
+            _Container.appendChild(datedElts[i]);
+        }
     }
 
     var _GetItems = () => {
@@ -71,8 +85,14 @@ module News {
         xhr.send(null);
     }
 
-    if(Container) {
-        _GetItems();
+    export var Init = (container: HTMLElement) => {
+    	_Container = container;
+    	_GetItems();
+    }
+
+    var newsContainer = document.getElementById("gsheet-news");
+    if(newsContainer) {
+        Init(newsContainer);
     }
 
 }
