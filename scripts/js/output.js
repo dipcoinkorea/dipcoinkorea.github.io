@@ -440,7 +440,7 @@ var Shop;
         var buyLink = document.createElement("a");
         buyLink.classList.add("product-detail-buy");
         buyLink.innerHTML = "BUY NOW";
-        buyLink.href = "mailto:dipcoinkorea@gmail.com?subject=" + title + "&body=I want to buy " + title + ", please take my money.";
+        buyLink.href = "mailto:dipcoincats@gmail.com?subject=" + title + "&body=I want to buy " + title + ", please take my money.";
         productDetailElt.appendChild(buyLink);
         priceElt.classList.add("product-detail-price");
         priceElt.innerHTML = price;
