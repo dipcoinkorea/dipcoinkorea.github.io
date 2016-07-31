@@ -58,6 +58,7 @@ module Shop {
     var _RenderDetail = (item: Object) => {
         var title = item["gsx$title"]["$t"];
         var imageurl = item["gsx$imageurl"]["$t"];
+        var imagelist = item["gsx$imagelist"]["$t"].split(',');
         var description = item["gsx$description"]["$t"];
         var price = item["gsx$price"]["$t"];
 
@@ -80,6 +81,14 @@ module Shop {
         imageOuter.classList.add("product-detail-figure");
         imageOuter.appendChild(imageElt);
         container.appendChild(imageOuter);
+
+        if(imagelist.length) {
+            for(var i = 0; i < imagelist.length; i++) {
+                var imageListElt = document.createElement("img");
+                imageListElt.src = imagelist[i];
+                imageOuter.appendChild(imageListElt);
+            }
+        }
 
         var buyLink = document.createElement("a");
         buyLink.classList.add("product-detail-buy");

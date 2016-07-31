@@ -1,6 +1,6 @@
 module News {
 
-    var spreadsheetID = "1zkKS4RxRcag89Fuu1CFRd48q7GU19YQCqFt0eImkr0w";
+    //var spreadsheetID = "1zkKS4RxRcag89Fuu1CFRd48q7GU19YQCqFt0eImkr0w";
     var _Container: HTMLElement;
 
     var _RenderNews = (entry) => {
@@ -72,9 +72,9 @@ module News {
         }
     }
 
-    var _GetItems = () => {
+    var _GetItems = (sheetid: string) => {
         var xhr = new XMLHttpRequest();
-        xhr.open("get", "https://spreadsheets.google.com/feeds/list/" + spreadsheetID + "/od6/public/values?alt=json", true);
+        xhr.open("get", "https://spreadsheets.google.com/feeds/list/" + sheetid + "/od6/public/values?alt=json", true);
         xhr.onload = (o: any) => {
             var response = JSON.parse(o.target.responseText);
             for(var i = 0; i < response.feed.entry.length; i++) {
@@ -87,7 +87,8 @@ module News {
 
     export var Init = (container: HTMLElement) => {
     	_Container = container;
-    	_GetItems();
+
+    	_GetItems(container.getAttribute("data-sheetid"));
     }
 
     var newsContainer = document.getElementById("gsheet-news");

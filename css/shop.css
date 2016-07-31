@@ -77,6 +77,9 @@
   float: left;
   width: 33.33333333%;
 }
+.product-detail-figure img {
+  margin-bottom: 20px;
+}
 .product-detail-content {
   width: 66.66666667%;
   float: left;

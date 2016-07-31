@@ -211,7 +211,7 @@ var Logo;
 })(Logo || (Logo = {}));
 var News;
 (function (News) {
-    var spreadsheetID = "1zkKS4RxRcag89Fuu1CFRd48q7GU19YQCqFt0eImkr0w";
+    //var spreadsheetID = "1zkKS4RxRcag89Fuu1CFRd48q7GU19YQCqFt0eImkr0w";
     var _Container;
     var _RenderNews = function (entry) {
         var title = entry["gsx$title"]["$t"];
@@ -271,9 +271,9 @@ var News;
             _Container.appendChild(datedElts[i]);
         }
     };
-    var _GetItems = function () {
+    var _GetItems = function (sheetid) {
         var xhr = new XMLHttpRequest();
-        xhr.open("get", "https://spreadsheets.google.com/feeds/list/" + spreadsheetID + "/od6/public/values?alt=json", true);
+        xhr.open("get", "https://spreadsheets.google.com/feeds/list/" + sheetid + "/od6/public/values?alt=json", true);
         xhr.onload = function (o) {
             var response = JSON.parse(o.target.responseText);
             for (var i = 0; i < response.feed.entry.length; i++) {
@@ -285,7 +285,7 @@ var News;
     };
     News.Init = function (container) {
         _Container = container;
-        _GetItems();
+        _GetItems(container.getAttribute("data-sheetid"));
     };
     var newsContainer = document.getElementById("gsheet-news");
     if (newsContainer) {
@@ -443,6 +443,7 @@ var Shop;
     var _RenderDetail = function (item) {
         var title = item["gsx$title"]["$t"];
         var imageurl = item["gsx$imageurl"]["$t"];
+        var imagelist = item["gsx$imagelist"]["$t"].split(',');
         var description = item["gsx$description"]["$t"];
         var price = item["gsx$price"]["$t"];
         var container = document.createElement("article");
@@ -461,6 +462,13 @@ var Shop;
         imageOuter.classList.add("product-detail-figure");
         imageOuter.appendChild(imageElt);
         container.appendChild(imageOuter);
+        if (imagelist.length) {
+            for (var i = 0; i < imagelist.length; i++) {
+                var imageListElt = document.createElement("img");
+                imageListElt.src = imagelist[i];
+                imageOuter.appendChild(imageListElt);
+            }
+        }
         var buyLink = document.createElement("a");
         buyLink.classList.add("product-detail-buy");
         buyLink.innerHTML = "BUY NOW";
