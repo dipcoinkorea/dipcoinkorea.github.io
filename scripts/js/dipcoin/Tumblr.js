@@ -41,8 +41,8 @@ var Tumblr;
     var _BuildPost = function (post) {
         var container = document.createElement("article"), postHeader = document.createElement("header"), postTitleELt = document.createElement("h3"), postDateElt = document.createElement("time"), postTextContent = document.createElement("div");
         var momentDate = moment(post.date);
-        var dateStr = ("0" + momentDate.format("d")).slice(-2) + momentDate.format("MMYYYY");
-        container.setAttribute("data-date", momentDate.format("YYYYMM") + ("0" + momentDate.format("d")).slice(-2));
+        var dateStr = ("0" + momentDate.format("D")).slice(-2) + momentDate.format("MMYYYY");
+        container.setAttribute("data-date", momentDate.format("YYYYMM") + ("0" + momentDate.format("D")).slice(-2));
         container.classList.add("tumblr-post");
         postHeader.classList.add("tumblr-post-header");
         container.appendChild(postHeader);

@@ -1,4 +1,4 @@
-/// <reference path="lib/definitions-custom.ts"/>
+/// <reference path="../lib/definitions-custom.ts"/>
 /// <reference path="Helpers.ts"/>
 
 const BASESPEED: number = 0.3; 

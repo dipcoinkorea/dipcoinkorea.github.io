@@ -1,6 +1,6 @@
 module News {
 
-    //var spreadsheetID = "1zkKS4RxRcag89Fuu1CFRd48q7GU19YQCqFt0eImkr0w";
+    var _NewsSpreadsheetID = "1zkKS4RxRcag89Fuu1CFRd48q7GU19YQCqFt0eImkr0w";
     var _Container: HTMLElement;
 
     var _RenderNews = (entry) => {
@@ -87,8 +87,8 @@ module News {
 
     export var Init = (container: HTMLElement) => {
     	_Container = container;
-
-    	_GetItems(container.getAttribute("data-sheetid"));
+        _NewsSpreadsheetID = container.getAttribute("data-sheetid") || _NewsSpreadsheetID;
+    	_GetItems(_NewsSpreadsheetID);
     }
 
     var newsContainer = document.getElementById("gsheet-news");

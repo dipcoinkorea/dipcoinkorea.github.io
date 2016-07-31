@@ -47,6 +47,7 @@ var Shop;
     var _RenderDetail = function (item) {
         var title = item["gsx$title"]["$t"];
         var imageurl = item["gsx$imageurl"]["$t"];
+        var imagelist = item["gsx$imagelist"]["$t"].split(',');
         var description = item["gsx$description"]["$t"];
         var price = item["gsx$price"]["$t"];
         var container = document.createElement("article");
@@ -65,10 +66,17 @@ var Shop;
         imageOuter.classList.add("product-detail-figure");
         imageOuter.appendChild(imageElt);
         container.appendChild(imageOuter);
+        if (imagelist.length) {
+            for (var i = 0; i < imagelist.length; i++) {
+                var imageListElt = document.createElement("img");
+                imageListElt.src = imagelist[i];
+                imageOuter.appendChild(imageListElt);
+            }
+        }
         var buyLink = document.createElement("a");
         buyLink.classList.add("product-detail-buy");
         buyLink.innerHTML = "BUY NOW";
-        buyLink.href = "mailto:DIPCOINCATS@GMAIL.COM?subject=" + title + "&body=I want to buy " + title + ", please take my money.";
+        buyLink.href = "mailto:dipcoincats@gmail.com?subject=" + title + "&body=I want to buy " + title + ", please take my money.";
         productDetailElt.appendChild(buyLink);
         priceElt.classList.add("product-detail-price");
         priceElt.innerHTML = price;

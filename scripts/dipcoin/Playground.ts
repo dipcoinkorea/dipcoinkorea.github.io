@@ -1,4 +1,4 @@
-/// <reference path="lib/definitions-custom.ts"/>
+/// <reference path="../lib/definitions-custom.ts"/>
 /// <reference path="./Hero.ts"/>
 
 module Playground {

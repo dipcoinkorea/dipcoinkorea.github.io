@@ -1,4 +1,4 @@
-/// <reference path="lib/definitions-custom.ts"/>
+/// <reference path="../lib/definitions-custom.ts"/>
 /// <reference path="Helpers.ts"/>
 var BASESPEED = 0.3;
 var Hero = (function () {

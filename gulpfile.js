@@ -25,19 +25,15 @@ gulp.task('css', function() {
 });
 
 gulp.task('ts', function() {
-    gulp.src('scripts/**/*.ts')
-		.pipe(ts({
-            out: 'output.js'    
-        }))
+    gulp.src(['scripts/**/*.ts'])
+		.pipe(ts())
 		.pipe(gulp.dest('scripts/js'));
 });
 
 gulp.task('js', function() {
-    gulp.src(['./scripts/js/lib/*.js', './scripts/js/*.js'])
-        .pipe(sourcemaps.init())
-        .pipe(uglify())    
+    gulp.src(['./scripts/js/lib/*.js', './scripts/js/dipcoin/*.js', , './scripts/js/Main.js'])
         .pipe(concat('scripts.js'))
-        .pipe(sourcemaps.write())
+        .pipe(uglify())
         .pipe(gulp.dest('./assets'));
 });
 
