@@ -1,6 +1,4 @@
 # humanstxt.org/
-# The humans responsible & technology colophon
-
 # TEAM
 Marwan Zibaoui @RickyMarou
-Hyuna Lee 
+Hyuna Lee
