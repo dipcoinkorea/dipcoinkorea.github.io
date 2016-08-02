@@ -66,13 +66,6 @@ var Shop;
         imageOuter.classList.add("product-detail-figure");
         imageOuter.appendChild(imageElt);
         container.appendChild(imageOuter);
-        if (imagelist.length) {
-            for (var i = 0; i < imagelist.length; i++) {
-                var imageListElt = document.createElement("img");
-                imageListElt.src = imagelist[i];
-                imageOuter.appendChild(imageListElt);
-            }
-        }
         var buyLink = document.createElement("a");
         buyLink.classList.add("product-detail-buy");
         buyLink.innerHTML = "BUY NOW";
@@ -85,6 +78,16 @@ var Shop;
         descriptionElt.innerHTML = description;
         productDetailElt.appendChild(descriptionElt);
         container.appendChild(productDetailElt);
+        if (imagelist.length) {
+            var detailImagesOuter = document.createElement("figure");
+            detailImagesOuter.classList.add("product-detail-images");
+            container.appendChild(detailImagesOuter);
+            for (var i = 0; i < imagelist.length; i++) {
+                var imageListElt = document.createElement("img");
+                imageListElt.src = imagelist[i];
+                detailImagesOuter.appendChild(imageListElt);
+            }
+        }
         return container;
     };
     var _GetItems = function () {
