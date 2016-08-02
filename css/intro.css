@@ -36,6 +36,7 @@
   transform: translate(-50%, -50%);
   width: 200px;
   height: 200px;
+  z-index: 10;
 }
 #video-background iframe {
   position: absolute;
