@@ -3,12 +3,21 @@ module News {
     var _NewsSpreadsheetID = "1zkKS4RxRcag89Fuu1CFRd48q7GU19YQCqFt0eImkr0w";
     var _Container: HTMLElement;
 
+    function youtube_parser(url){
+        var regExp = /^.*(youtu\.be\/|v\/|u\/\w\/|embed\/|watch\?v=|\&v=)([^#\&\?]*).*/;
+        var match = url.match(regExp);
+        if (match && match[2].length == 11) {
+          return match[2];
+        }
+    }
+
     var _RenderNews = (entry) => {
         
         var title = entry["gsx$title"]["$t"];
         var date = entry["gsx$date"]["$t"];
         var image = entry["gsx$image"]["$t"];
         var text = entry["gsx$text"]["$t"];
+        var video = entry["gsx$video"]["$t"];
 
         var article = document.createElement("article");
         var headerElt = document.createElement("header");
@@ -45,6 +54,22 @@ module News {
 
         	imageElt.setAttribute("src", image);
         	figureElt.appendChild(imageElt);
+        }
+
+        if(video) {
+            var videoId = youtube_parser(video);
+            if(videoId) {
+                var iframeOuter = document.createElement("div");
+                var iframeElt = document.createElement("iframe");
+
+                iframeOuter.classList.add("youtube-item-iframe-outer");
+                article.appendChild(iframeOuter);
+
+                iframeElt.allowFullscreen = true;
+                iframeElt.frameBorder = "0";
+                iframeElt.src = "https://www.youtube.com/embed/" + videoId;
+                iframeOuter.appendChild(iframeElt);
+            }
         }
 
         if(text) {
