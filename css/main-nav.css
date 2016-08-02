@@ -85,6 +85,6 @@
     margin: 20px 0;
   }
   .chat-toggler {
-    position: relative;
+    display: none;
   }
 }
