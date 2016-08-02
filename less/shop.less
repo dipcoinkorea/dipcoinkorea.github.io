@@ -40,6 +40,10 @@
     } 
 } 
 
+.product-item-title {
+    line-height: 1.2;
+}
+
 .product-item-content {
     position: absolute;
     bottom: 0;
@@ -66,7 +70,8 @@
     font-family: @title-font;
     font-size: 52px;
     letter-spacing: 2px;
-    margin-bottom: @width-gutter;
+    margin-bottom: @width-gutter*2;
+    line-height: 1.2;
 }
 
 .product-detail-figure {
@@ -108,7 +113,7 @@
     border-bottom: 1px solid transparent;
 
     .no-touchevents &:hover {
-        border-bottom: 1px solid #fff;
+        color: @rollover-color;
     }
 }
 

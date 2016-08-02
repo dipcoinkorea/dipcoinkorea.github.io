@@ -40,6 +40,9 @@
 .product-item-link:hover + .product-item-content {
   opacity: 1;
 }
+.product-item-title {
+  line-height: 1.2;
+}
 .product-item-content {
   position: absolute;
   bottom: 0;
@@ -71,7 +74,8 @@
   font-family: 'bebasregular';
   font-size: 52px;
   letter-spacing: 2px;
-  margin-bottom: 20px;
+  margin-bottom: 40px;
+  line-height: 1.2;
 }
 .product-detail-figure {
   float: left;
@@ -107,7 +111,7 @@
   border-bottom: 1px solid transparent;
 }
 .no-touchevents .product-detail-buy:hover {
-  border-bottom: 1px solid #fff;
+  color: #ffef00;
 }
 @media screen and (min-width: 601px) and (max-width: 1280px) {
   .product-item {
