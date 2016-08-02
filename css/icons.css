@@ -20,3 +20,9 @@
 .icon-previous:before {
   content: 'p';
 }
+.icon-menu:before {
+  content: 'm';
+}
+.icon-close:before {
+  content: 'c';
+}

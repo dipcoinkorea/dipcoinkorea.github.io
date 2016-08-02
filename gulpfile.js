@@ -38,8 +38,8 @@ gulp.task('js', function() {
 });
 
 gulp.task('default', ['less', 'css', 'ts', 'js'], function() {
-    gulp.watch('./less/**/*.less', ['less']);
-    gulp.watch('./css/**/*.css', ['css']);
-    gulp.watch('./scripts/**/*.ts', ['ts']);
-    gulp.watch('./scripts/**/*.js', ['js']);
+    gulp.watch('./less/**/*.less', ['less', 'css']);
+    //gulp.watch('./css/**/*.css', ['css']);
+    gulp.watch('./scripts/**/*.ts', ['ts', 'js']);
+    //gulp.watch('./scripts/**/*.js', ['js']);
 });

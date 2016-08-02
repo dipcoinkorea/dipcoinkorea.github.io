@@ -13,9 +13,6 @@ video,
 audio {
   max-width: 100%;
 }
-.js-background {
-  transition: background-color 5s;
-}
 #container {
   width: 100%;
   height: 100%;
@@ -64,6 +61,7 @@ audio {
     margin: 0 20px;
   }
   .content {
+    padding-top: 60px;
     padding-left: 0;
   }
 }

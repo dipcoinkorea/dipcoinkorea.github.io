@@ -37,6 +37,18 @@
       "src": "entypo"
     },
     {
+      "uid": "559647a6f430b3aeadbecd67194451dd",
+      "css": "menu",
+      "code": 109,
+      "src": "fontawesome"
+    },
+    {
+      "uid": "11e664deed5b2587456a4f9c01d720b6",
+      "css": "cancel",
+      "code": 99,
+      "src": "iconic"
+    },
+    {
       "uid": "d70de04c0b5882b865b459c334cc1ad3",
       "css": "dot-1",
       "code": 59402,

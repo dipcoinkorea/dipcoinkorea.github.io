@@ -4,7 +4,7 @@
   right: 0;
   top: 0;
   height: 80px;
-  z-index: 9999;
+  z-index: 500;
 }
 .main-nav {
   max-width: 1280px;
@@ -40,21 +40,51 @@
 .chat-open .chat-toggler .chat-toggler-closed {
   display: none;
 }
+.main-nav-mobile-toggler {
+  display: none;
+  position: fixed;
+  top: 20px;
+  right: 20px;
+  color: #fff;
+  font-size: 36px;
+  text-decoration: none;
+  z-index: 999;
+}
+.main-nav-mobile-toggler:before {
+  content: "m";
+}
+.menu-open .main-nav-mobile-toggler:before {
+  content: "c";
+}
 @media screen and (min-width: 601px) and (max-width: 1280px) {
   .main-nav {
     margin: 0 40px;
   }
 }
 @media screen and (max-width: 600px) {
+  .main-nav-mobile-toggler {
+    display: block;
+  }
+  .main-nav-outer {
+    bottom: 0;
+    height: auto;
+    background-color: rgba(170, 25, 165, 0.9);
+    transform: translateX(-100%);
+    transition: all 0.2s ease-out;
+  }
+  .menu-open .main-nav-outer {
+    transform: translateX(0);
+  }
   .main-nav {
     margin: 0 20px;
     line-height: 26px;
     padding-top: 10px;
   }
-  .chat-toggler {
-    top: 10px;
-  }
   .main-nav-link {
-    font-size: 18px;
+    display: block;
+    margin: 20px 0;
+  }
+  .chat-toggler {
+    position: relative;
   }
 }
