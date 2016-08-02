@@ -76,3 +76,6 @@
   font-size: 13px;
   margin: 5px 0;
 }
+.tumblr-post-text {
+  white-space: pre;
+}

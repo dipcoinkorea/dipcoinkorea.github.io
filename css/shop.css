@@ -122,4 +122,7 @@
   .product-item {
     width: 100%;
   }
+  .product-detail-title {
+    font-size: 16px;
+  }
 }
