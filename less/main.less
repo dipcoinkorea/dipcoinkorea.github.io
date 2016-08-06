@@ -82,6 +82,10 @@ img, video, audio {
     height: 100%;
 }
 
+.mobile-chat-toggler {
+    display: none;
+}
+
 //Tablet + Laptop
 @media screen and (min-width: (@mobile-width + 1)) and (max-width: @website-maxwidth) {
     .container-inner {
@@ -94,6 +98,18 @@ img, video, audio {
 @media screen and (max-width: @mobile-width) {
     .container-inner {
         margin: 0 @width-gutter;
+    }
+
+    .mobile-chat-toggler {
+        position: absolute;
+        top: @width-gutter;
+        left: @width-gutter;
+        display: block;
+        color: @font-color;
+        font-family: @title-font;
+        font-size: 24px;
+        text-decoration: none;
+        display: inline-block;
     }
     
     .content {
