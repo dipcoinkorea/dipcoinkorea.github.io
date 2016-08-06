@@ -5,4 +5,6 @@ var Main;
     }
     if (VideoContainer)
         Youtube.GetLastVideo();
+    if (HomeLogoImg)
+        HomeLogoImg.addEventListener("click", function () { alert("HI"); });
 })(Main || (Main = {}));

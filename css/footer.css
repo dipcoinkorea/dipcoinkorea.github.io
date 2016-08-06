@@ -34,7 +34,7 @@
   color: #fff;
   transition: color 0.2s;
 }
-.footer-link:hover,
+.no-touchevents .footer-link:hover,
 .footer-link.active {
   color: #ffef00;
 }

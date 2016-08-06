@@ -13,8 +13,10 @@ module Main {
     if(VideoContainer)
     	Youtube.GetLastVideo();
 
-    // if(HomeLogoImg)
-    //     HomeLogoImg.addEventListener("click", () => { console.log("click"); window.close(); });
+
+
+    if(HomeLogoImg)
+        HomeLogoImg.addEventListener("click", () => { alert("HI"); });
 
     //if(TumblrContainer)
     //    Tumblr.Init(TumblrContainer);

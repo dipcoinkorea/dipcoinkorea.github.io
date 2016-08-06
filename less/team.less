@@ -97,6 +97,10 @@
     &.half {
         right: 50%;
     }
+
+    .touchevents & {
+        display: none;
+    }
 }
 
 .team-member-insta-link {
@@ -139,6 +143,27 @@
     margin: 20px 0;
     line-height: 1.8em;
     white-space: pre-line;
+}
+
+.team-member {
+    text-align: center;
+}
+
+.mobile-member-link {
+    display: block;
+    margin-top: 7px;
+    color: #fff;
+    text-decoration: none;
+    .rollover();
+
+    &:before {
+        display: inline-block;
+        padding-right: 10px;
+    }
+
+    .no-touchevents & {
+        display: none;
+    }
 }
 
 //Tablet + Laptop

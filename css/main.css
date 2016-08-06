@@ -88,6 +88,8 @@ audio {
     font-size: 24px;
     text-decoration: none;
     display: inline-block;
+    right: initial;
+    bottom: initial;
   }
   .chat {
     width: 100%;

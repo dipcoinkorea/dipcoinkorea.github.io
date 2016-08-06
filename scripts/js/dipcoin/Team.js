@@ -12,6 +12,7 @@ var Team;
             var image = document.createElement("img");
             var title = document.createElement("h2");
             var link = document.createElement("a");
+            var mobileSoundcloudLink = document.createElement("a");
             var mask = document.createElement("div");
             membercontainer.classList.add("team-member");
             inner.classList.add("team-member-inner");
@@ -30,6 +31,14 @@ var Team;
             link.target = "_blank";
             link.href = member.link;
             inner.appendChild(link);
+            mobileSoundcloudLink.classList.add("mobile-member-link");
+            mobileSoundcloudLink.classList.add("soundcloud");
+            mobileSoundcloudLink.classList.add("icon");
+            mobileSoundcloudLink.classList.add("icon-soundcloud");
+            mobileSoundcloudLink.target = "_blank";
+            mobileSoundcloudLink.href = member.link;
+            mobileSoundcloudLink.innerHTML = "soundcloud";
+            membercontainer.appendChild(mobileSoundcloudLink);
             link.addEventListener("mouseover", function (e) {
                 e.target.parentElement.classList.add("soundcloud-hover");
             });
@@ -38,11 +47,20 @@ var Team;
             });
             if (member.instagram) {
                 var instaLink = document.createElement("a");
+                var mobileInstaLink = document.createElement("a");
                 link.classList.add("half");
                 instaLink.target = "_blank";
                 instaLink.href = member.instagram;
                 instaLink.classList.add("team-member-insta-link");
                 inner.appendChild(instaLink);
+                mobileInstaLink.classList.add("mobile-member-link");
+                mobileInstaLink.classList.add("insta");
+                mobileInstaLink.classList.add("icon");
+                mobileInstaLink.classList.add("icon-insta");
+                mobileInstaLink.target = "_blank";
+                mobileInstaLink.href = member.instagram;
+                mobileInstaLink.innerHTML = "instagram";
+                membercontainer.appendChild(mobileInstaLink);
                 if (!member.link)
                     instaLink.classList.add("full");
                 instaLink.addEventListener("mouseover", function (e) {
