@@ -32,8 +32,10 @@ gulp.task('ts', function() {
 
 gulp.task('js', function() {
     gulp.src(['./scripts/js/lib/*.js', './scripts/js/dipcoin/*.js', , './scripts/js/Main.js'])
+        .pipe(sourcemaps.init())
         .pipe(concat('scripts.js'))
-        .pipe(uglify())
+        //.pipe(uglify())
+        .pipe(sourcemaps.write())
         .pipe(gulp.dest('./assets'));
 });
 

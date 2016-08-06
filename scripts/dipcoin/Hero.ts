@@ -14,12 +14,16 @@ class Hero  {
         constructor(container: HTMLElement) {
             this.Elt = document.createElement("a");
             
-            this.Elt.setAttribute("href", "home.html");
-            this.Elt.classList.add("hero")
+            this.Elt.setAttribute("href", "javascript:void(0)");
+            this.Elt.classList.add("hero");
             container.appendChild(this.Elt);
             this.Position = {x : 50, y: 50};
             this._Direction = [Direction.Top, Direction.Left];
             this.Move();
+
+            this.Elt.addEventListener("click", this._Click);
+            this.Elt.addEventListener("mouseover", this._MouseOver);
+            this.Elt.addEventListener("mouseout", this._MouseOut);
         }
         
         //Changes one of the direction (randomly selected)
@@ -59,6 +63,24 @@ class Hero  {
                     this._Direction[dirIndex] = Direction.Left;
                     break;  
             }   
+        }
+
+        private _MouseOver = () => {
+            this.Speed = this.Speed * 3;
+        }
+
+        private _MouseOut = () => {
+            this.Speed = BASESPEED;
+        }
+
+        private _Click = () => {
+            this.Elt.removeEventListener("mouseout", this._MouseOut);
+            this.Speed = this.Speed * 5;
+            this.Elt.classList.add("rotating");
+            this.Elt.classList.add("active");
+            setTimeout(() => {
+                document.location.href = "home.html";
+            }, 3000);
         }
         
         public GoOppositeDir() {

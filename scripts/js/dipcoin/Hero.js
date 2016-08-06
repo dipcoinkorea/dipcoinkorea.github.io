@@ -29,13 +29,31 @@ var Hero = (function () {
                     break;
             }
         };
+        this._MouseOver = function () {
+            _this.Speed = _this.Speed * 3;
+        };
+        this._MouseOut = function () {
+            _this.Speed = BASESPEED;
+        };
+        this._Click = function () {
+            _this.Elt.removeEventListener("mouseout", _this._MouseOut);
+            _this.Speed = _this.Speed * 5;
+            _this.Elt.classList.add("rotating");
+            _this.Elt.classList.add("active");
+            setTimeout(function () {
+                document.location.href = "home.html";
+            }, 3000);
+        };
         this.Elt = document.createElement("a");
-        this.Elt.setAttribute("href", "home.html");
+        this.Elt.setAttribute("href", "javascript:void(0)");
         this.Elt.classList.add("hero");
         container.appendChild(this.Elt);
         this.Position = { x: 50, y: 50 };
         this._Direction = [Direction.Top, Direction.Left];
         this.Move();
+        this.Elt.addEventListener("click", this._Click);
+        this.Elt.addEventListener("mouseover", this._MouseOver);
+        this.Elt.addEventListener("mouseout", this._MouseOut);
     }
     Hero.prototype.ChangeDirFromCollision = function (fromDirs) {
         var l = fromDirs.length;

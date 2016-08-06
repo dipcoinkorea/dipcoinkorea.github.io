@@ -47,8 +47,4 @@ var PageTitle;
         clearInterval(inte);
         inte = setInterval(_blink, 250);
     };
-    Loading();
-    window.addEventListener("load", Blink);
-    if (document.readyState == "completed")
-        Blink();
 })(PageTitle || (PageTitle = {}));

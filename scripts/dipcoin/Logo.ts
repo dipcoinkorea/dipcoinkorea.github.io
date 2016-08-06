@@ -20,16 +20,18 @@ module Logo {
         loader.src = images[imageLoadedCount];
     }
 
-    loader.addEventListener("load", () => {
-        imageLoadedCount++;
-        loadNextImage();
-    });
+    if(logoElt && imgElt) { 
+        loader.addEventListener("load", () => {
+            imageLoadedCount++;
+            loadNextImage();
+        });
 
-    var timeout = null;
-    var changeImage = () => {
-        imageDisplayedIndex = imageDisplayedIndex == (images.length-1) ? 0 : (imageDisplayedIndex+1);
-        imgElt.src = images[imageDisplayedIndex];
+        var timeout = null;
+        var changeImage = () => {
+            imageDisplayedIndex = imageDisplayedIndex == (images.length-1) ? 0 : (imageDisplayedIndex+1);
+            imgElt.src = images[imageDisplayedIndex];
+        }
+
+        logoElt.addEventListener("mouseenter", changeImage);
     }
-
-    logoElt.addEventListener("mouseenter", changeImage);
 }

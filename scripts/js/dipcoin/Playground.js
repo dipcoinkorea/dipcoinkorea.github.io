@@ -23,17 +23,8 @@ var Playground;
             requestAnimationFrame(_Loop);
         };
         requestAnimationFrame(_Loop);
-        //Events
         for (var j = 0; j < _Heroes.length; j++) {
-            //If mouse is over Hero, go faster    
             var hero = _Heroes[j];
-            hero.Elt.addEventListener("mouseover", function () {
-                //hero.GoOppositeDir();
-                hero.Speed = hero.Speed * 3;
-            });
-            hero.Elt.addEventListener("mouseout", function () {
-                hero.Speed = BASESPEED;
-            });
             //Randomly change direction every 3 sec
             setInterval(function () {
                 if (Math.random() > 0.2)

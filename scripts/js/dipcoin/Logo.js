@@ -17,14 +17,16 @@ var Logo;
             return;
         loader.src = images[imageLoadedCount];
     };
-    loader.addEventListener("load", function () {
-        imageLoadedCount++;
-        loadNextImage();
-    });
-    var timeout = null;
-    var changeImage = function () {
-        imageDisplayedIndex = imageDisplayedIndex == (images.length - 1) ? 0 : (imageDisplayedIndex + 1);
-        imgElt.src = images[imageDisplayedIndex];
-    };
-    logoElt.addEventListener("mouseenter", changeImage);
+    if (logoElt && imgElt) {
+        loader.addEventListener("load", function () {
+            imageLoadedCount++;
+            loadNextImage();
+        });
+        var timeout = null;
+        var changeImage = function () {
+            imageDisplayedIndex = imageDisplayedIndex == (images.length - 1) ? 0 : (imageDisplayedIndex + 1);
+            imgElt.src = images[imageDisplayedIndex];
+        };
+        logoElt.addEventListener("mouseenter", changeImage);
+    }
 })(Logo || (Logo = {}));

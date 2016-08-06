@@ -1,18 +1,20 @@
 module Main {
     var
-        TumblrContainer = document.getElementById("tumblr-news"),
-    	VideoContainer = document.getElementById("video-background"),
+        HomeLogoImg = document.getElementById("home-logo-image"),
+        VideoContainer = document.getElementById("video-background"),
         Container = document.getElementById("news");
     
     if(Container) {
-        News.Init(Container);
-        Soundcloud.Init(Container);
-	    Youtube.Init(Container);
+        //News.Init(Container);
+        //Soundcloud.Init(Container);
+	    //Youtube.Init(Container);
     }
 
-    
     if(VideoContainer)
     	Youtube.GetLastVideo();
+
+    // if(HomeLogoImg)
+    //     HomeLogoImg.addEventListener("click", () => { console.log("click"); window.close(); });
 
     //if(TumblrContainer)
     //    Tumblr.Init(TumblrContainer);

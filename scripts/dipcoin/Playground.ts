@@ -38,19 +38,11 @@ module Playground {
 
         requestAnimationFrame(_Loop);
 
-        //Events
+
         for (var j = 0; j < _Heroes.length; j++) {
-            //If mouse is over Hero, go faster    
+            
             var hero = _Heroes[j];
-            hero.Elt.addEventListener("mouseover", () => {
-                //hero.GoOppositeDir();
-                hero.Speed = hero.Speed * 3;
-            });
-
-            hero.Elt.addEventListener("mouseout", () => {
-                hero.Speed = BASESPEED;
-            });
-
+            
             //Randomly change direction every 3 sec
             setInterval(function () {
                 if (Math.random() > 0.2)
