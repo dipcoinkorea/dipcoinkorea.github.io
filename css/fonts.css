@@ -1,0 +1,14 @@
+@font-face {
+  font-family: 'bebasregular';
+  src: url('fonts/bebas___-webfont.eot');
+  src: url('fonts/bebas___-webfont.eot?#iefix') format('embedded-opentype'), url('fonts/bebas___-webfont.woff2') format('woff2'), url('fonts/bebas___-webfont.woff') format('woff'), url('fonts/bebas___-webfont.ttf') format('truetype'), url('fonts/bebas___-webfont.svg#bebasregular') format('svg');
+  font-weight: normal;
+  font-style: normal;
+}
+@font-face {
+  font-family: 'icons';
+  src: url('fonts/icons.eot?95449150');
+  src: url('fonts/icons.eot?95449150#iefix') format('embedded-opentype'), url('fonts/icons.woff2?95449150') format('woff2'), url('fonts/icons.woff?95449150') format('woff'), url('fonts/icons.ttf?95449150') format('truetype'), url('fonts/icons.svg?95449150#icons') format('svg');
+  font-weight: normal;
+  font-style: normal;
+}
