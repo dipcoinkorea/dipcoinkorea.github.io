@@ -7,7 +7,7 @@ module Youtube {
 
     var _BuildVideo = (ytItem: any) => {
 
-        var 
+        var
             iframeParent = document.createElement("div"),
             iframe: HTMLIFrameElement = document.createElement("iframe"),
             container = document.createElement("article"),
@@ -53,14 +53,14 @@ module Youtube {
 
     var _GetPosts = () => {
         var xhr = new XMLHttpRequest();
-        xhr.open("get", "https://www.googleapis.com/youtube/v3/search?key=" 
+        xhr.open("get", "https://www.googleapis.com/youtube/v3/search?key="
         + YOUTUBE_API_KEY + "&channelId=" + YOUTUBE_CHANNEL_ID + "&part=snippet", true);
         xhr.onload = (o: any) => {
             var response = JSON.parse(o.target.responseText);
             for(var i = 0; i < response.items.length; i++) {
                 Container.appendChild(_BuildVideo(response.items[i]));
             }
-            
+
             var datedElts: HTMLElement[] = Array.prototype.slice.call(Container.querySelectorAll("*[data-date]"));
             var l = datedElts.length;
             while(l--) {
@@ -83,7 +83,7 @@ module Youtube {
 
     export var GetLastVideo = () => {
         var xhr = new XMLHttpRequest();
-        xhr.open("get", "https://www.googleapis.com/youtube/v3/search?key=" 
+        xhr.open("get", "https://www.googleapis.com/youtube/v3/search?key="
         + YOUTUBE_API_KEY + "&channelId=" + YOUTUBE_CHANNEL_ID + "&part=snippet", true);
         xhr.onload = (o: any) => {
             var response = JSON.parse(o.target.responseText);
@@ -93,7 +93,7 @@ module Youtube {
 
             console.log('videos number', response.items.length);
 
-            iframe.src = "https://www.youtube.com/embed/" + response.items[response.items.length - 1].id.videoId 
+            iframe.src = "https://www.youtube.com/embed/" + response.items[0].id.videoId
             + "?rel=0&autoplay=1&controls=0&rel=0&showinfo=0";
         };
         xhr.send(null);
@@ -103,5 +103,5 @@ module Youtube {
         Container = container;
         _GetPosts();
     }
-        
+
 }

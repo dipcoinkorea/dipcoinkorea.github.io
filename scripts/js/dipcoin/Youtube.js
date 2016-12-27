@@ -70,7 +70,7 @@ var Youtube;
             if (!response.items || !response.items[0])
                 return;
             console.log('videos number', response.items.length);
-            iframe.src = "https://www.youtube.com/embed/" + response.items[response.items.length - 1].id.videoId
+            iframe.src = "https://www.youtube.com/embed/" + response.items[0].id.videoId
                 + "?rel=0&autoplay=1&controls=0&rel=0&showinfo=0";
         };
         xhr.send(null);
